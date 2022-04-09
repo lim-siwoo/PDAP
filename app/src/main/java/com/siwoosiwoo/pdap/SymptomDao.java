@@ -1,0 +1,20 @@
+package com.siwoosiwoo.pdap;
+
+import androidx.room.*;
+
+import java.util.List;
+
+@Dao
+public interface SymptomDao {
+    @Query("SELECT * FROM symptom")
+    List<Symptom> getAll();
+
+    @Query("SELECT * FROM symptom WHERE id IN (:symptomIds)")
+    List<Symptom> loadAllByIds(int[] symptomIds);
+
+    @Insert
+    void insertAll(Symptom... symptoms);
+
+    @Delete
+    void delete(Symptom symptom);
+}
