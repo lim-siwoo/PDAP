@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PDAP</string>
+    <string name="enter_patient">"차트번호나 이름을 입력하세요"</string>
 </resources>
