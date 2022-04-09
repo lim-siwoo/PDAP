@@ -4,10 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/PDAP/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/PDAP/app/src/main/res/layout/patient_data.xml" value="0.1" />
-        <entry key="..\:/PDAP/app/src/main/res/layout/patient_data_record.xml" value="0.2" />
-        <entry key="..\:/PDAP/app/src/main/res/layout/patient_date_list.xml" value="0.1" />
-        <entry key="..\:/PDAP/app/src/main/res/layout/patient_date_record.xml" value="0.16" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patient_list.xml" value="0.16" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patients.xml" value="0.12473958333333333" />
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/layout.xml" value="0.5494791666666666" />
