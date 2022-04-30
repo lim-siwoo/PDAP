@@ -31,21 +31,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SymptomDao symptomDao;
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Sample.db")
-                .createFromAsset("Symptom.db")
-                .allowMainThreadQueries()
-                //.addTypeConverter(Converters.class)
-                .build();
-
-        symptomDao = db.symptomDao();
-
-        List<Symptom> Symptoms = symptomDao.getAll();
-
-        for(int i=0;i<Symptoms.size();i++) {
-            String name = Symptoms.get(i).name;
-            Log.d("ㅎㅇㅎㅇ", name);
-        }
+//        SymptomDao symptomDao;
+//        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Sample.db")
+//                .createFromAsset("Symptom.db")
+//                .allowMainThreadQueries()
+//                //.addTypeConverter(Converters.class)
+//                .build();
+//
+//        symptomDao = db.symptomDao();
+//
+//        List<Symptom> Symptoms = symptomDao.getAll();
+//
+//        for(int i=0;i<Symptoms.size();i++) {
+//            String name = Symptoms.get(i).name;
+//            Log.d("ㅎㅇㅎㅇ", name);
+//        }
 
         Intent intent = new Intent(MainActivity.this , PatientsListActivity.class);
         startActivity(intent);
