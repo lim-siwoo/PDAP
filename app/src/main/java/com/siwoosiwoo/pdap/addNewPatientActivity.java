@@ -60,6 +60,7 @@ public class addNewPatientActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
+                //여기서 환자정보를 DB에 저장하면됨
                 finish();
             }
         });
