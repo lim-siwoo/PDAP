@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent"
+    tools:context=".checkDiseaseActivitiy">
+
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="com.siwoosiwoo.pdap.ui.patientresultlist.First_Fragment"
+        android:layout_width="match_parent"
+        android:layout_weight="0.5"
+        android:layout_height="match_parent"/>
+
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.siwoosiwoo.pdap.ui.patientresultlist.Second_Fragment"
+        android:layout_width="match_parent"
+        android:layout_weight="0.5"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

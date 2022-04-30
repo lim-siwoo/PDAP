@@ -2,10 +2,14 @@ package com.siwoosiwoo.pdap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -18,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editSearch;        // 검색어를 입력할 Input 창
     private SearchAdapter adapter;      // 리스트뷰에 연결할 아답터
     private ArrayList<String> arraylist;
+    private ImageButton plusButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         editSearch = findViewById(R.id.editSearch);
         listView = findViewById(R.id.listView);
+        plusButton = findViewById(R.id.plusButton);
 
         // 리스트를 생성한다.
         list = new ArrayList<>();
@@ -62,7 +68,13 @@ public class MainActivity extends AppCompatActivity {
                 search(text);
             }
         });
-
+        plusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, checkDiseaseActivitiy.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
