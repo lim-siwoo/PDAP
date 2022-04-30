@@ -143,7 +143,11 @@ public class PatientsListActivity extends AppCompatActivity {
 
     // 검색에 사용될 데이터를 리스트에 추가한다.
     private void settingList() {
-        List<Patient>
+        List<Patient> patients= patientDao.getAll();
+        for(int i=0;i<patients.size();i++){
+            Patient patient = patients.get(i);
+
+        }
         list.add("0001/채수빈/여/20000101");
 
     }
