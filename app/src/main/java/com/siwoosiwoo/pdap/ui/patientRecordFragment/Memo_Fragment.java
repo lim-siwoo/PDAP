@@ -12,10 +12,10 @@ import com.siwoosiwoo.pdap.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Second_Fragment#newInstance} factory method to
+ * Use the {@link Memo_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Second_Fragment extends Fragment {
+public class Memo_Fragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class Second_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Second_Fragment() {
+    public Memo_Fragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class Second_Fragment extends Fragment {
      * @return A new instance of fragment Second_Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Second_Fragment newInstance(String param1, String param2) {
-        Second_Fragment fragment = new Second_Fragment();
+    public static Memo_Fragment newInstance(String param1, String param2) {
+        Memo_Fragment fragment = new Memo_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class Second_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second_symptom, container, false);
+        return inflater.inflate(R.layout.fragment_Memo_symptom, container, false);
     }
 }

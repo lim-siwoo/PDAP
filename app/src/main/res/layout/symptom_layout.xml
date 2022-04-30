@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/fragment2"
-        android:name="com.siwoosiwoo.pdap.ui.patientRecordFragment.Second_Fragment"
+        android:name="com.siwoosiwoo.pdap.ui.patientRecordFragment.Memo_Fragment"
         android:layout_width="match_parent"
         android:layout_weight="0.5"
         android:layout_height="match_parent"/>
