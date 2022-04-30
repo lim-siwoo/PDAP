@@ -1,27 +1,22 @@
 package com.siwoosiwoo.pdap;
 
 import androidx.room.*;
+import java.util.Date;
 
 @Entity(tableName = "patient")
 public class Patient {
     @PrimaryKey
     public int id;
 
-    @ColumnInfo(name = "first_name")
-    public String firstName;
+    @ColumnInfo(name = "name")
+    public String name;
 
-    @ColumnInfo(name = "last_name")
-    public String lastName;
-
-    @ColumnInfo(name = "birth_year")
-    public int birthYear;
-
-    @ColumnInfo(name = "birth_month")
-    public int birthMonth;
-
-    @ColumnInfo(name = "bitth_date")
-    public int birthDate;
+    @ColumnInfo(name = "birth_date")
+    public Date birthDate;
 
     @ColumnInfo(name = "sex")
     public char sex;
+
+    @ColumnInfo(name = "record_ids")
+    public int[] recordIds;
 }

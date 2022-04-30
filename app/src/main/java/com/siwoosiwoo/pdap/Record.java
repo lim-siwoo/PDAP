@@ -2,20 +2,16 @@ package com.siwoosiwoo.pdap;
 
 import androidx.room.*;
 
+import java.util.Date;
+
 @Entity(tableName = "record")
 public class Record {
     @PrimaryKey
     public int id;
 
-    @ColumnInfo(name = "record_year")
-    public int recordYear;
-
-    @ColumnInfo(name = "record_month")
-    public int recordMonth;
-
     @ColumnInfo(name = "record_date")
-    public int recordDate;
+    public Date recordDate;
 
-    @ColumnInfo(name = "symptom")
-    public int symptom;
+    @ColumnInfo(name = "symptom_ids")
+    public int[] symptomIds;
 }

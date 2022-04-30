@@ -14,5 +14,7 @@ public class Disease {
 
     @ColumnInfo(name = "description")
     public String description;
-}
 
+    @ColumnInfo(name = "description")
+    public int[] symptoms_id;
+}
