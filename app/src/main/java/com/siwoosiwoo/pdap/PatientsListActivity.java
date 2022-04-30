@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -72,11 +73,17 @@ public class PatientsListActivity extends AppCompatActivity {
         plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PatientsListActivity.this, RecordActivitiy.class);
+                Intent intent = new Intent(PatientsListActivity.this, addNewPatientActivity.class);
                 startActivity(intent);
             }
         });
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent2 = new Intent(PatientsListActivity.this, RecordActivitiy.class);
+                startActivity(intent2);
+            }
+        });
     }
 
     // 검색을 수행하는 메소드
