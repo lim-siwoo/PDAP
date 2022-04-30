@@ -23,7 +23,7 @@ public class List_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        fragmentView = inflater.inflate(R.layout.fragment_List_symptom, container, false);
+        fragmentView = inflater.inflate(R.layout.fragment_list_symptom, container, false);
 
         listView = fragmentView.findViewById(R.id.listView_item);
 
