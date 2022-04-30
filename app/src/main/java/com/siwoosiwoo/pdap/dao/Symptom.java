@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import org.w3c.dom.Text;
+
 @Entity(tableName = "symptom")
 public class Symptom {
     @PrimaryKey
@@ -11,7 +13,4 @@ public class Symptom {
 
     @ColumnInfo(name = "name")
     public String name;
-
-    @ColumnInfo(name = "description")
-    public String description;
 }
