@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class checkDiseaseActivitiy extends AppCompatActivity {
+public class RecordActivitiy extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

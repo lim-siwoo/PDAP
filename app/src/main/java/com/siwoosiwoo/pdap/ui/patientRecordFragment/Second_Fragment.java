@@ -1,4 +1,4 @@
-package com.siwoosiwoo.pdap.ui.patientresultlist;
+package com.siwoosiwoo.pdap.ui.patientRecordFragment;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.siwoosiwoo.pdap.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link First_Fragment#newInstance} factory method to
+ * Use the {@link Second_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class First_Fragment extends Fragment {
+public class Second_Fragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class First_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public First_Fragment() {
+    public Second_Fragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class First_Fragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment First_Fragment.
+     * @return A new instance of fragment Second_Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static First_Fragment newInstance(String param1, String param2) {
-        First_Fragment fragment = new First_Fragment();
+    public static Second_Fragment newInstance(String param1, String param2) {
+        Second_Fragment fragment = new Second_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class First_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first_, container, false);
+        return inflater.inflate(R.layout.fragment_second_, container, false);
     }
 }

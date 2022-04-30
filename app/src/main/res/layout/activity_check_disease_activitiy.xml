@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_height="match_parent"
-    tools:context=".checkDiseaseActivitiy">
+    tools:context=".RecordActivitiy">
 
     <fragment
         android:id="@+id/fragment1"
-        android:name="com.siwoosiwoo.pdap.ui.patientresultlist.First_Fragment"
+        android:name="com.siwoosiwoo.pdap.ui.patientRecordFragment.First_Fragment"
         android:layout_width="match_parent"
         android:layout_weight="0.5"
         android:layout_height="match_parent"/>
 
     <fragment
         android:id="@+id/fragment2"
-        android:name="com.siwoosiwoo.pdap.ui.patientresultlist.Second_Fragment"
+        android:name="com.siwoosiwoo.pdap.ui.patientRecordFragment.Second_Fragment"
         android:layout_width="match_parent"
         android:layout_weight="0.5"
         android:layout_height="match_parent"/>

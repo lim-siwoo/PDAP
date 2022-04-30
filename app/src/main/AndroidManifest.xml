@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PDAP">
         <activity
-            android:name=".checkDiseaseActivitiy"
+            android:name=".RecordActivitiy"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
