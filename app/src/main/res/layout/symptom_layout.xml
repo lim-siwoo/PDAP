@@ -7,9 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".RecordActivitiy">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment1"
-        android:name="com.siwoosiwoo.pdap.ui.patientRecordFragment.First_Fragment"
         android:layout_width="match_parent"
         android:layout_weight="0.5"
         android:layout_height="match_parent"/>

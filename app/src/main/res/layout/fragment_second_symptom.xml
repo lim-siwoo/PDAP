@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.patientRecordFragment.First_Fragment">
+    tools:context=".ui.patientRecordFragment.Second_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -13,7 +13,12 @@
         android:textSize="20dp"
         android:layout_gravity="center"
         android:textColor="#FFFFFF"
-        android:background="#E53935"
-        android:text="First Fragment" />
+        android:background="#3552E5"
+        android:text="Second Fragment" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="여기에 뭐든 적으셈" />
 </LinearLayout>
