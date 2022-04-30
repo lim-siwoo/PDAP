@@ -1,11 +1,14 @@
 package com.siwoosiwoo.pdap;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -24,7 +27,24 @@ public class PatientsListActivity extends AppCompatActivity {
     private EditText editSearch;        // 검색어를 입력할 Input 창
     private SearchAdapter adapter;      // 리스트뷰에 연결할 아답터
     private ArrayList<String> arraylist;
-    private ImageButton plusButton;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_patient_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int curId = item.getItemId();
+        switch (curId){
+            case R.id.addPatient:
+                Intent intent = new Intent(PatientsListActivity.this, addNewPatientActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +53,6 @@ public class PatientsListActivity extends AppCompatActivity {
 
         editSearch = findViewById(R.id.editSearch);
         listView = findViewById(R.id.listView);
-        plusButton = findViewById(R.id.plusButton);
 
         // 리스트를 생성한다.
         list = new ArrayList<>();
@@ -70,13 +89,6 @@ public class PatientsListActivity extends AppCompatActivity {
                 search(text);
             }
         });
-        plusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PatientsListActivity.this, addNewPatientActivity.class);
-                startActivity(intent);
-            }
-        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -84,6 +96,7 @@ public class PatientsListActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
     }
 
     // 검색을 수행하는 메소드
@@ -113,27 +126,27 @@ public class PatientsListActivity extends AppCompatActivity {
 
     // 검색에 사용될 데이터를 리스트에 추가한다.
     private void settingList() {
-        list.add("채수빈");
-        list.add("박지현");
-        list.add("수지");
-        list.add("남태현");
-        list.add("하성운");
-        list.add("크리스탈");
-        list.add("강승윤");
-        list.add("손나은");
-        list.add("남주혁");
-        list.add("루이");
-        list.add("진영");
-        list.add("슬기");
-        list.add("이해인");
-        list.add("고원희");
-        list.add("설리");
-        list.add("공명");
-        list.add("김예림");
-        list.add("혜리");
-        list.add("웬디");
-        list.add("박혜수");
-        list.add("카이");
+        list.add("0001/채수빈/여/20000101");
+        list.add("0002/박지현/여/20000101");
+        list.add("0003/수지/여/20000101");
+        list.add("0004/남태현/남/20000101");
+        list.add("0005/하성운/여/20000101");
+        list.add("0006/크리스탈/여/20000101");
+        list.add("0007/강승윤/남/20000101");
+        list.add("0008/손나은/여/20000101");
+        list.add("0009/남주혁/남/20000101");
+        list.add("0010/루이/남/20000101");
+        list.add("0011/진영/남/20000101");
+        list.add("0012/슬기/남/20000101");
+        list.add("0013/이해인/남/20000101");
+        list.add("0014/고원희/남/20000101");
+        list.add("0015/설리/남/20000101");
+        list.add("0016/공명/남/20000101");
+        list.add("0017/김예림/남/20000101");
+        list.add("0018/혜리/남/20000101");
+        list.add("0019/웬디/남/20000101");
+        list.add("박혜수/남/20000101");
+        list.add("카이/남/20000101");
         list.add("진세연");
         list.add("동호");
         list.add("박세완");

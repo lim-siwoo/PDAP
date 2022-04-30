@@ -25,14 +25,6 @@
                 android:autofillHints="username">
             </EditText>
 
-            <ImageButton
-                android:id="@+id/plusButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:contentDescription="Add new Patient"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/btn_plus"
-                />
         </LinearLayout>
 
         <ListView
@@ -42,8 +34,6 @@
             android:divider="#999999"
             android:dividerHeight="1dp">
         </ListView>
-
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
