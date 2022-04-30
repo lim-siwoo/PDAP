@@ -8,9 +8,6 @@ public interface DiseaseDao {
     @Query("SELECT * FROM disease")
     List<Disease> getAll();
 
-    @Query("SELECT * FROM disease WHERE id IN (:diseaseIds)")
-    List<Disease> loadAllByIds(int[] diseaseIds);
-
     @Insert
     void insertAll(Disease... diseases);
 
