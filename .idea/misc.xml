@@ -15,6 +15,11 @@
         <entry key="..\:/PDAP/app/src/main/res/layout/patient_diagnosis_list.xml" value="0.24947916666666667" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patient_list.xml" value="0.16" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patients.xml" value="0.12473958333333333" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patient_list.xml" value="0.2390625" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patient_record_screen.xml" value="0.2390625" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patient_symptom_list.xml" value="0.2390625" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/symptom_check.xml" value="0.2390625" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/symptom_checklist.xml" value="0.2390625" />
       </map>
     </option>
   </component>

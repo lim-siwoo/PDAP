@@ -17,5 +17,5 @@ public class Record {
     public int recordDate;
 
     @ColumnInfo(name = "symptom")
-    public int[] symptom;
+    public int symptom;
 }
