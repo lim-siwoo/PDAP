@@ -2,6 +2,7 @@ package com.siwoosiwoo.pdap;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.siwoosiwoo.pdap.dao.AppDatabase;
+import com.siwoosiwoo.pdap.dao.DiseaseDao;
+import com.siwoosiwoo.pdap.dao.Patient;
+import com.siwoosiwoo.pdap.dao.PatientDao;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +33,9 @@ public class PatientsListActivity extends AppCompatActivity {
     private EditText editSearch;        // 검색어를 입력할 Input 창
     private SearchAdapter adapter;      // 리스트뷰에 연결할 아답터
     private ArrayList<String> arraylist;
+
+    private AppDatabase db; //룸db를 선언할 데이터 베이스 선언
+    private PatientDao patientDao;//이 자바 파일에서는 patient 정보를 사용해야 하므로 선언
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,6 +59,14 @@ public class PatientsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients_list);
+
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Sample.db")
+                .createFromAsset("PDAP.db")
+                //.addTypeConverter(Converters.class)
+                .allowMainThreadQueries()
+                .build();
+
+        patientDao = db.patientDao();
 
         editSearch = findViewById(R.id.editSearch);
         listView = findViewById(R.id.listView);
@@ -126,32 +143,8 @@ public class PatientsListActivity extends AppCompatActivity {
 
     // 검색에 사용될 데이터를 리스트에 추가한다.
     private void settingList() {
+        List<Patient>
         list.add("0001/채수빈/여/20000101");
-        list.add("0002/박지현/여/20000101");
-        list.add("0003/수지/여/20000101");
-        list.add("0004/남태현/남/20000101");
-        list.add("0005/하성운/여/20000101");
-        list.add("0006/크리스탈/여/20000101");
-        list.add("0007/강승윤/남/20000101");
-        list.add("0008/손나은/여/20000101");
-        list.add("0009/남주혁/남/20000101");
-        list.add("0010/루이/남/20000101");
-        list.add("0011/진영/남/20000101");
-        list.add("0012/슬기/남/20000101");
-        list.add("0013/이해인/남/20000101");
-        list.add("0014/고원희/남/20000101");
-        list.add("0015/설리/남/20000101");
-        list.add("0016/공명/남/20000101");
-        list.add("0017/김예림/남/20000101");
-        list.add("0018/혜리/남/20000101");
-        list.add("0019/웬디/남/20000101");
-        list.add("박혜수/남/20000101");
-        list.add("카이/남/20000101");
-        list.add("진세연");
-        list.add("동호");
-        list.add("박세완");
-        list.add("도희");
-        list.add("창모");
-        list.add("허영지");
+
     }
 }
