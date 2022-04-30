@@ -1,11 +1,11 @@
-package com.siwoosiwoo.pdap;
+package com.siwoosiwoo.pdap.dao;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "symptom")
-public class Symptom {
+@Entity(tableName = "disease")
+public class Disease {
     @PrimaryKey
     public int id;
 
@@ -14,4 +14,7 @@ public class Symptom {
 
     @ColumnInfo(name = "description")
     public String description;
+
+    @ColumnInfo(name = "symptoms_id")
+    public int[] symptoms_id;
 }

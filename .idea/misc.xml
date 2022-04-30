@@ -15,11 +15,19 @@
         <entry key="..\:/PDAP/app/src/main/res/layout/patient_diagnosis_list.xml" value="0.24947916666666667" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patient_list.xml" value="0.16" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patients.xml" value="0.12473958333333333" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/activity_check_disease_activitiy.xml" value="0.4421875" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/fragment_first_.xml" value="0.4421875" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/fragment_second_.xml" value="0.4421875" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/main_activity.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patient_list.xml" value="0.2390625" />
         <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patient_record_screen.xml" value="0.2390625" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patient_result_list_fragment.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patient_symptom_list.xml" value="0.2390625" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patients.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/symptom.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/symptom_check.xml" value="0.2390625" />
         <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/symptom_checklist.xml" value="0.2390625" />
+        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/symptom_note.xml" value="0.4421875" />
       </map>
     </option>
   </component>

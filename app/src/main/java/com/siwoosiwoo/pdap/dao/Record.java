@@ -1,4 +1,4 @@
-package com.siwoosiwoo.pdap;
+package com.siwoosiwoo.pdap.dao;
 
 import androidx.room.*;
 

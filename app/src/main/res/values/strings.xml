@@ -1,7 +1,4 @@
 <resources>
     <string name="app_name">PDAP</string>
     <string name="enter_patient">"차트번호나 이름을 입력하세요"</string>
-
-    //From this part, Second GUI String is written
-    <string name = "checkListTextView">"환자의 의심가는 증상을 하나씩 체크해주세요."</string>
 </resources>
