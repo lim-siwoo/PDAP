@@ -16,9 +16,13 @@
         android:background="#3552E5"
         android:text="Second Fragment" />
 
-    <TextView
-        android:id="@+id/textView"
+    <EditText
+        android:id="@+id/memo_edit"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="여기에 뭐든 적으셈" />
+        android:ems="10"
+        android:gravity="top"
+        android:hint="선생님의 의견을 여기 적어주세요"
+        android:padding="10dp"
+        android:textSize="10dp"/>
 </LinearLayout>
