@@ -1,6 +1,8 @@
 package com.siwoosiwoo.pdap.dao;
 
 import androidx.room.*;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 @Entity(tableName = "patient")
@@ -18,5 +20,5 @@ public class Patient {
     public char sex;
 
     @ColumnInfo(name = "record_ids")
-    public int[] recordIds;
+    public ArrayList<String> recordIds;
 }

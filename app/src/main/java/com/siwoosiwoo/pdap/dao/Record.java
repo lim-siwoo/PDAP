@@ -2,6 +2,7 @@ package com.siwoosiwoo.pdap.dao;
 
 import androidx.room.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @Entity(tableName = "record")
@@ -13,5 +14,8 @@ public class Record {
     public Date recordDate;
 
     @ColumnInfo(name = "symptom_ids")
-    public int[] symptomIds;
+    public ArrayList<String> symptomIds;
+
+    @ColumnInfo(name = "description")
+    public String description;
 }
