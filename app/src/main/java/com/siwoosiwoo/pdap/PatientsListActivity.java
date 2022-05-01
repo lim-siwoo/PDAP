@@ -63,8 +63,6 @@ public class PatientsListActivity extends AppCompatActivity {
 
         Log.d("test12", "onActivituResult");
         settingList();
-        list.clear();
-        list.addAll(arraylist);
         adapter.notifyDataSetChanged();
     }
 
@@ -157,6 +155,7 @@ public class PatientsListActivity extends AppCompatActivity {
 
         Log.d("test12", "settingList called");
 
+        list.clear();
         for(int i=0;i<patients.size();i++){
             Patient patient = patients.get(i);
             int id = patient.id;
