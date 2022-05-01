@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity(tableName = "record")
 public class Record {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     @ColumnInfo(name = "record_date")
