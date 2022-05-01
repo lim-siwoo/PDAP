@@ -1,16 +1,34 @@
 package com.siwoosiwoo.pdap;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.siwoosiwoo.pdap.dao.MedicalDatabase;
+import com.siwoosiwoo.pdap.dao.PatientDao;
+import com.siwoosiwoo.pdap.dao.PatientDatabase;
+import com.siwoosiwoo.pdap.dao.Record;
+import com.siwoosiwoo.pdap.dao.RecordDao;
+import com.siwoosiwoo.pdap.dao.Symptom;
+import com.siwoosiwoo.pdap.dao.SymptomDao;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,31 +36,107 @@ public class CheckSymptomActivity extends AppCompatActivity {
 
     LinearLayout linearMain;
     CheckBox checkBox;
-    Button resultButton;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.save_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int curId = item.getItemId();
+        switch (curId){
+            case R.id.save:
+                Toast.makeText(this, "체크리스트를 저장합니다.", Toast.LENGTH_SHORT).show();
+
+                //여기서 DB에 저장해야함
+                MedicalDatabase Mdb = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
+                        .createFromAsset("Medical.db")
+                        .allowMainThreadQueries()
+                        .build();
+
+                SymptomDao symptomDao = Mdb.symptomDao();
+
+                List<Symptom> symptomsList = symptomDao.getAll();
+                Mdb.close();
+                ArrayList<String> symptomIds = new ArrayList<>();
+
+                for (int i =0; i<symptomsList.size();i++){
+                    CheckBox tempCheckBox = findViewById(symptomsList.get(i).id);
+
+                    if (tempCheckBox.isChecked()){
+                        symptomIds.add(Integer.toString(symptomsList.get(i).id));
+                    }
+                }
+                Record record = new Record();
+                long now = System.currentTimeMillis();
+                Date date = new Date(now);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                record.recordDate = sdf.format(date);
+                record.symptomIds = symptomIds;
+
+                PatientDatabase Pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
+                        .allowMainThreadQueries()
+                        .build();
+
+                RecordDao recordDao = Pdb.recordDao();
+                recordDao.insertAll(record);
+                String TAG = "logRecordList";
+                List<Record> logRecordList = recordDao.getAll();
+                Log.d(TAG, "DB inserted record: "+logRecordList.get(0).recordDate);
+                Log.d(TAG, "DB inserted record: "+logRecordList.get(0).symptomIds.get(0));
+                Pdb.close();//DB닫아줌
+
+
+
+                Intent intent = new Intent(CheckSymptomActivity.this,RecordActivitiy.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_symptom);
         linearMain = (LinearLayout) findViewById(R.id.checkbox_layout);
-        resultButton = findViewById(R.id.resultButton);
+
+
+
+
+
         /**
          * create linked hash map for store item you can get value from database
          * or server also
          */
-        LinkedHashMap<String, String> symptom = new LinkedHashMap<String, String>();//밑에처럼 동적추가 가능함
-        symptom.put("1", "Apple");
-        symptom.put("2", "Boy");
-        symptom.put("3", "Cat");
-        symptom.put("4", "Dog");
-        symptom.put("5", "Eet");
-        symptom.put("6", "Fat");
-        symptom.put("7", "Goat");
-        symptom.put("8", "Hen");
-        symptom.put("9", "I am");
-        symptom.put("10", "Jug");
+//        LinkedHashMap<Integer, String> symptom = new LinkedHashMap<Integer, String>();//밑에처럼 동적추가 가능함
 
-        Set<?> set = symptom.entrySet();
+        MedicalDatabase Mdb = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
+                .allowMainThreadQueries()
+                .build();
+
+        SymptomDao symptomDao = Mdb.symptomDao();
+
+        List<Symptom> symptomsList = symptomDao.getAll();
+
+        Mdb.close();
+
+        for (int i =0; i<symptomsList.size();i++){
+
+//            symptom.put(symptomsList.get(i).id,symptomsList.get(i).name);
+
+            checkBox = new CheckBox(this);
+            checkBox.setId(symptomsList.get(i).id);
+            checkBox.setText(symptomsList.get(i).name);
+            checkBox.setOnClickListener(getOnClickDoSomething(checkBox));
+            linearMain.addView(checkBox);
+        }
+
+/*        Set<?> set = symptom.entrySet();
         // Get an iterator
         Iterator<?> i = set.iterator();
         // Display elements
@@ -51,20 +145,12 @@ public class CheckSymptomActivity extends AppCompatActivity {
             Map.Entry me = (Map.Entry) i.next();
             System.out.print(me.getKey() + ": ");
             System.out.println(me.getValue());
-
             checkBox = new CheckBox(this);
             checkBox.setId(Integer.parseInt(me.getKey().toString()));
             checkBox.setText(me.getValue().toString());
             checkBox.setOnClickListener(getOnClickDoSomething(checkBox));
             linearMain.addView(checkBox);
-        }
-        resultButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CheckSymptomActivity.this,RecordActivitiy.class);
-                startActivity(intent);
-            }
-        });
+        }*/
     }
     View.OnClickListener getOnClickDoSomething(final Button button) {
         return new View.OnClickListener() {
