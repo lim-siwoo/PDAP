@@ -11,7 +11,7 @@ public class Record {
     public int id;
 
     @ColumnInfo(name = "record_date")
-    public Date recordDate;
+    public String recordDate;
 
     @ColumnInfo(name = "symptom_ids")
     public ArrayList<String> symptomIds;

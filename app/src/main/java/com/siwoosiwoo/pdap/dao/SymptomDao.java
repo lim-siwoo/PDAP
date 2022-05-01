@@ -13,6 +13,9 @@ public interface SymptomDao {
     List<Symptom> loadAllByIds(int[] symptomIds);
 
     @Insert
+    void insert(Symptom symptom);
+
+    @Insert
     void insertAll(Symptom... symptoms);
 
     @Delete

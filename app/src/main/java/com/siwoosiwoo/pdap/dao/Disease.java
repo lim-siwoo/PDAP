@@ -18,5 +18,5 @@ public class Disease {
     public String description;
 
     @ColumnInfo(name = "symptom_ids")
-    public ArrayList<String> symptom_ids;
+    public ArrayList<String> symptomIds;
 }

@@ -14,10 +14,10 @@ public class Patient {
     public String name;
 
     @ColumnInfo(name = "birth_date")
-    public Date birthDate;
+    public String birthDate;
 
     @ColumnInfo(name = "sex")
-    public char sex;
+    public String sex;
 
     @ColumnInfo(name = "record_ids")
     public ArrayList<String> recordIds;
