@@ -44,8 +44,8 @@
         android:layout_marginTop="0dp"
         android:layout_toRightOf="@+id/ChartNumbertextView"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="ChartNumber" />
+        android:hint="0000"
+        android:inputType="number" />
 
     <RadioGroup
         android:layout_below="@+id/ChartNumbertextView"
