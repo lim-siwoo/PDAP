@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Sample.db")
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "PDAP.db")
                 //.createFromAsset("test.db")
                 //.addTypeConverter(Converters.class)
                 .allowMainThreadQueries()
@@ -234,7 +234,6 @@ public class MainActivity extends AppCompatActivity {
 
         List<Disease> diseases = new ArrayList<>();
         Disease disease = new Disease();
-        disease.id = 1;
         disease.name = "Neck pain with mobility (Neck stiffness, Spondylosis, Facet syndrome, Spinal stenosis) Common Symptoms";
         disease.description = "Common Symptoms\n" +
                 "\t- Central and/or unilateral neck pain\n" +
@@ -282,7 +281,107 @@ public class MainActivity extends AppCompatActivity {
         disease.symptomIds = symptomIds;
         diseases.add(disease);
 
+        disease = new Disease();
+        disease.name = "Neck pain with movement coordination impairments(muscle)Common Symptoms";
+        disease.description = "Common Symptoms\n" +
+                "\t- Mechanism of onset related to trauma or whiplash\n" +
+                "\t- Associated shoulder girdle or upper extremity pain\n" +
+                "\t- Associated varied nonspecific concussive sign and symtoms (headache, concentration or memory difficults, confusion, hypersensitivity to mechanical, thermal, acoustic, odor or light stimuli)\n" +
+                "\t- Dizziness/nausea\n" +
+                "\t- Positive cranial cervical flexion test\n" +
+                "\t- Positive neck flexor muscle endurance teste\n" +
+                "\t- Flexibility deficits of upper quarter muscles\n" +
+                "\t- Sensorimotor impairment\n" +
+                "\t\n" +
+                "Muschle Strain/Ligamnet Sprain\n" +
+                "\t- May be related to sudden trauma, chronic or sustained overload, or abnormal muscle biomechanics secondary to faulty function\n" +
+                "\t\n" +
+                "Intervention(management)\n" +
+                "\n" +
+                "Acute if prognosis is for a quick and early recovery\n" +
+                "\t- Education: adivce to remain activem act as usual\n" +
+                "\t- Home exercise: pain free cervical ROM and postural element\n" +
+                "\t- Monitor for acceptable progress\n" +
+                "\t- Minimize use of collar\n" +
+                "\t\n" +
+                "Subacute if prognosis is for a prolonged recovery\n" +
+                "\t- Education: activation and counselling\n" +
+                "\t- combined exercise\n" +
+                "\t- Supervised exercise\n" +
+                "\n" +
+                "Chronic\n" +
+                "\t- Education: prognosism encouragement, reassurance, pain management\n" +
+                "\t- Cervical mobilization plus individualized progressive exercise\n" +
+                "\t- TENS\n" +
+                "\t* manipulation 언급 없음\n" +
+                "\t* manipulation 언급 없음";
+        symptomIds = new ArrayList<>();
+        symptomIds.add("3");
+        symptomIds.add("5");
+        symptomIds.add("6");
+        symptomIds.add("7");
+        disease.symptomIds = symptomIds;
+        diseases.add(disease);
+
+
+
+        disease = new Disease();
+        disease.name = "Neck pain with headache(Cervicogenic)";
+        disease.description = "Common Symptoms\n" +
+                "\t- Noncontinuous\n" +
+                "\t- Unilater neck pain\n" +
+                "\t- Associated headache\n" +
+                "\t- Sustained positions/posture\n" +
+                "\t- forward posture\n" +
+                "\t- reduced AROM\n" +
+                "\t- reduced PAIVM of C0-3\n" +
+                "\t- Flexion rotation test\n" +
+                "\n" +
+                "Intervention(management)\n" +
+                "\t- Coordination, strength, endurance exercise\n" +
+                "\t- cervical mobilization/manipulation(upper cervical)\n" +
+                "\t- stretching exercises\n" +
+                "\t- self - SNAG(C1-2)\n" +
+                "\n" +
+                "Education: muscle control and support different from strength training";
+        symptomIds = new ArrayList<>();
+        symptomIds.add("2");
+        symptomIds.add("8");
+        symptomIds.add("9");
+        symptomIds.add("10");
+        disease.symptomIds = symptomIds;
+        diseases.add(disease);
+
+
+
+        disease = new Disease();
+        disease.name = "Neck pain with Radiating pain(Disk condition, posterolateral Bulging or Herniation) Common Symptoms";
+        disease.description = "Common Symptoms\n" +
+                "\t- Radiating pain\n" +
+                "\t- Upper extremtiy dermatomal paresthesia or numbness\n" +
+                "\t- Muscle weakness\n" +
+                "\t- Insidious onset\n" +
+                "\t- neck and neck related radiating pain reproduced or relievd with radiculopathy testing: Wainner’s cluster tests Upper-limb tension test, Spurling’s test, Cervical distraction, Cervical ROM(Ipsilateral rotation < 60 deg)\n" +
+                "\n" +
+                " * TOS와 감별 필요 Cervical ROM test(TOS는 Cervical ROM과 상관없음)\n" +
+                " \n" +
+                "Intervention(management)\n" +
+                "\t- Upper quarter and nerve mobilization procedures\n" +
+                "\t- Traction(Intermittent, 60sec pull force: 20sec relaxation)\n" +
+                "\t- Thoracic mobilization/manipulation\n" +
+                "\t- Cervical non-thrust mobilization\n" +
+                "\t- Cervical exercise(deep neck flexors)\n" +
+                "\t- Scapulothoracic exercise(periscapular strenghening)";
+        symptomIds = new ArrayList<>();
+        symptomIds.add("13");
+
+        disease.symptomIds = symptomIds;
+        diseases.add(disease);
+
+
+
         for(int i = 0; i < diseases.size(); i++) {
+            diseases.get(i).id = i;
             diseaseDao.insertAll(diseases.get(i));
         }
 

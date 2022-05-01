@@ -44,13 +44,11 @@ public class addNewPatientActivity extends AppCompatActivity {
         confirmButton = findViewById(R.id.OKbutton);
         sexRadioGroup = findViewById(R.id.SexRadioGroup);
 
-//        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "PDAP.db")
-//                .createFromAsset("PDAP.db")
-//                //.addTypeConverter(Converters.class)
-//                .allowMainThreadQueries()
-//                .build();
-//
-//        PatientDao patientDao = db.patientDao();
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "PDAP.db")
+                .allowMainThreadQueries()
+                .build();
+
+        PatientDao patientDao = db.patientDao();
 
 
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -96,11 +94,10 @@ public class addNewPatientActivity extends AppCompatActivity {
                 RadioButton radioButton = findViewById(selectedId);
                 if(radioButton.getText().toString() == "남성") {
                     newPatient.sex = "m";
-
                 } else {
                     newPatient.sex = "f";
                 }
-//                patientDao.insertAll(newPatient);
+                patientDao.insertAll(newPatient);
 
                 finish();
             }
