@@ -36,6 +36,7 @@ public class addNewPatientActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private Button confirmButton;
     private RadioGroup sexRadioGroup;
+    private RadioButton maleRadio;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class addNewPatientActivity extends AppCompatActivity {
         mDisplayDate = (TextView) findViewById(R.id.BirthDate);
         confirmButton = findViewById(R.id.OKbutton);
         sexRadioGroup = findViewById(R.id.SexRadioGroup);
-
+        maleRadio = findViewById(R.id.maleRadio);
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "PDAP.db")
                 .allowMainThreadQueries()
                 .build();
@@ -91,14 +92,15 @@ public class addNewPatientActivity extends AppCompatActivity {
                 newPatient.birthDate = date;
 
                 int selectedId = sexRadioGroup.getCheckedRadioButtonId();
-                RadioButton radioButton = findViewById(selectedId);
-                if(radioButton.getText().toString() == "남성") {
+                if(maleRadio.getId() == selectedId) {
                     newPatient.sex = "m";
                 } else {
                     newPatient.sex = "f";
                 }
                 patientDao.insertAll(newPatient);
+                db.close();
 
+                setResult(200);
                 finish();
             }
         });

@@ -36,6 +36,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "PDAP.db")
+//                .createFromAsset("PDAP.db")
+                .allowMainThreadQueries()
+                .build();
+
+        SymptomDao symptomDao = db.symptomDao();//여기서부터 Symptom 넣음
+
+        List<Symptom> getTest = symptomDao.getAll();
+
+        for(int i = 0; i < getTest.size(); i++) {
+            Log.d("test12", getTest.get(i).name);
+        }
+
+
+        DiseaseDao diseaseDao = db.diseaseDao();
+
+        List<Disease> getTest2 = diseaseDao.getAll();
+        Log.d("test12", getTest2.get(0).name);
+
+        db.close();
+
         Intent intent = new Intent(getApplicationContext(), PatientsListActivity.class);
         startActivity(intent);
     }

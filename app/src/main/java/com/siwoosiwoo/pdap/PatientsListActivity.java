@@ -1,6 +1,7 @@
 package com.siwoosiwoo.pdap;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
@@ -50,37 +51,39 @@ public class PatientsListActivity extends AppCompatActivity {
         switch (curId){
             case R.id.addPatient:
                 Intent intent = new Intent(PatientsListActivity.this, addNewPatientActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 101);
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d("test12", "onActivituResult");
+        settingList();
+        list.clear();
+        list.addAll(arraylist);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients_list);
-
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Sample.db")
-                .createFromAsset("PDAP.db")
-                //.addTypeConverter(Converters.class)
-                .allowMainThreadQueries()
-                .build();
-
-        patientDao = db.patientDao();
-
         editSearch = findViewById(R.id.editSearch);
         listView = findViewById(R.id.listView);
 
         // 리스트를 생성한다.
         list = new ArrayList<>();
 
+        // 리스트의 모든 데이터를 arraylist에 복사한다.// list 복사본을 만든다.
+        arraylist = new ArrayList<>();
+
         // 검색에 사용할 데이터을 미리 저장한다.
         settingList();
 
-        // 리스트의 모든 데이터를 arraylist에 복사한다.// list 복사본을 만든다.
-        arraylist = new ArrayList<>();
-        arraylist.addAll(list);
 
         // 리스트에 연동될 아답터를 생성한다.
         adapter = new SearchAdapter(list, this);
@@ -117,6 +120,7 @@ public class PatientsListActivity extends AppCompatActivity {
 
     }
 
+
     // 검색을 수행하는 메소드
     public void search(String charText) {
 
@@ -144,7 +148,15 @@ public class PatientsListActivity extends AppCompatActivity {
 
     // 검색에 사용될 데이터를 리스트에 추가한다.
     private void settingList() {
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "PDAP.db")
+                .allowMainThreadQueries()
+                .build();
+        patientDao = db.patientDao();
         List<Patient> patients= patientDao.getAll();
+        db.close();
+
+        Log.d("test12", "settingList called");
+
         for(int i=0;i<patients.size();i++){
             Patient patient = patients.get(i);
             int id = patient.id;
@@ -158,5 +170,7 @@ public class PatientsListActivity extends AppCompatActivity {
             list.add(addList);
         }
 
+        arraylist.clear();
+        arraylist.addAll(list);
     }
 }
