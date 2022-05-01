@@ -110,7 +110,7 @@ public class PatientsListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent2 = new Intent(PatientsListActivity.this, RecordActivitiy.class);
+                Intent intent2 = new Intent(PatientsListActivity.this, CheckSymptomActivity.class);
                 startActivity(intent2);
             }
         });
@@ -157,6 +157,6 @@ public class PatientsListActivity extends AppCompatActivity {
             Log.d("text12", addList);
             list.add(addList);
         }
-
+        list.add("임시우");
     }
 }
