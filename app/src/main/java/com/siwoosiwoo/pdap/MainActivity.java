@@ -14,10 +14,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import com.siwoosiwoo.pdap.dao.AppDatabase;
 import com.siwoosiwoo.pdap.dao.Converters;
 import com.siwoosiwoo.pdap.dao.Disease;
 import com.siwoosiwoo.pdap.dao.DiseaseDao;
+import com.siwoosiwoo.pdap.dao.MedicalDatabase;
 import com.siwoosiwoo.pdap.dao.Patient;
 import com.siwoosiwoo.pdap.dao.PatientDao;
 import com.siwoosiwoo.pdap.dao.Symptom;
@@ -49,24 +49,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "PDAP.db")
-//                .createFromAsset("PDAP.db")
+        MedicalDatabase db = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
+                .createFromAsset("Medical.db")
                 .allowMainThreadQueries()
                 .build();
 
-        SymptomDao symptomDao = db.symptomDao();//여기서부터 Symptom 넣음
 
-        List<Symptom> getTest = symptomDao.getAll();
-
-        for(int i = 0; i < getTest.size(); i++) {
-            Log.d("test12", getTest.get(i).name);
-        }
-
-
-        DiseaseDao diseaseDao = db.diseaseDao();
-
-        List<Disease> getTest2 = diseaseDao.getAll();
-        //Log.d("test12", getTest2.get(0).name);
+//        SymptomDao symptomDao = db.symptomDao();//여기서부터 Symptom 넣음
+//
+//        List<Symptom> getTest = symptomDao.getAll();
+//
+//        for(int i = 0; i < getTest.size(); i++) {
+//            Log.d("test12", getTest.get(i).name);
+//        }
+//
+//
+//        DiseaseDao diseaseDao = db.diseaseDao();
+//
+//        List<Disease> getTest2 = diseaseDao.getAll();
+//        Log.d("test12", getTest2.get(0).name);
 
         db.close();
 

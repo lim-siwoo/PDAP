@@ -19,9 +19,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.siwoosiwoo.pdap.dao.AppDatabase;
 import com.siwoosiwoo.pdap.dao.Patient;
 import com.siwoosiwoo.pdap.dao.PatientDao;
+import com.siwoosiwoo.pdap.dao.PatientDatabase;
 
 import java.sql.Date;
 
@@ -46,7 +46,7 @@ public class addNewPatientActivity extends AppCompatActivity {
         confirmButton = findViewById(R.id.OKbutton);
         sexRadioGroup = findViewById(R.id.SexRadioGroup);
         maleRadio = findViewById(R.id.maleRadio);
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "PDAP.db")
+        PatientDatabase db = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
                 .allowMainThreadQueries()
                 .build();
 
@@ -72,7 +72,7 @@ public class addNewPatientActivity extends AppCompatActivity {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                Log.d(TAG, "onDateSet : YYYY-MM-DD: "+year+"-"+month+"-"+day);
+//                Log.d(TAG, "onDateSet : YYYY-MM-DD: "+year+"-"+month+"-"+day);
                 String strDate = year+"-"+month+"-"+day;
                 date = strDate;
                 mDisplayDate.setText(strDate);
