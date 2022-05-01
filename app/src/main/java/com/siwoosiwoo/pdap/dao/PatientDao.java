@@ -10,9 +10,6 @@ public interface PatientDao {
     List<Patient> getAll();
 
     @Insert
-    void insert(Patient patient);
-
-    @Insert
     void insertAll(Patient... patients);
 
     @Delete
