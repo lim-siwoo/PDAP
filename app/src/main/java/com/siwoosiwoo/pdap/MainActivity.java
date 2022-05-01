@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
-        SymptomDao symptomDao = db.symptomDao();
+        SymptomDao symptomDao = db.symptomDao();//여기서부터 Symptom 넣음
         
         List<Symptom> symptoms = new ArrayList<>();
         Symptom symptom = new Symptom();
@@ -55,11 +55,180 @@ public class MainActivity extends AppCompatActivity {
         symptom.name = "Unilateral neck pain";
         symptoms.add(symptom);
 
+        symptom = new Symptom();
+        symptom.id = 3;
+        symptom.name = "Associated shoulder girdle or upper extremity pain";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 4;
+        symptom.name = "Limitation in neck motion";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 5;
+        symptom.name = "Mechanism of onset related to trauma or whiplash";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 6;
+        symptom.name = "Associated varied nonspecific concussive sign and symtoms(headache, concentration or memory difficults, confusion, hypersensitivity to mechanical, thermal, acoustic, odor or light stimuli)";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 7;
+        symptom.name = "Dizziness/nausea";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 8;
+        symptom.name = "Noncontinuous";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 9;
+        symptom.name = "Associated headache";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 10;
+        symptom.name = "Sustained positions/posture";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 11;
+        symptom.name = "Intermitte pain";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 12;
+        symptom.name = "Constant pain";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 13;
+        symptom.name = "Insidious onset";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 14;
+        symptom.name = "Trauma";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 15;
+        symptom.name = "Arthrosclerosis";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 16;
+        symptom.name = "Osteophytic encroachment to artery";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 17;
+        symptom.name = "Spontaneous VAD";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 18;
+        symptom.name = "Associated varied nonspecific concussive sign and symtoms";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 19;
+        symptom.name = "positive 5 D’s and 3N’s";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 20;
+        symptom.name = "Paresthesia of tongues and lips";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 21;
+        symptom.name = "Over 70 years(90%)";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 22;
+        symptom.name = "An insidious onset with reduced fine motor skills in the hands, urinary- urgency, hesitation";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 23;
+        symptom.name = "Chest pain";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 24;
+        symptom.name = "Chest pressure";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 25;
+        symptom.name = "Shoulder pain(most common in Lt shoulder)";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 26;
+        symptom.name = "Arm and hand pain";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 27;
+        symptom.name = "Upper back pain";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 28;
+        symptom.name = "Anterior neck pain";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 29;
+        symptom.name = "Jaw pain";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 30;
+        symptom.name = "Horner’s syndrome";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 31;
+        symptom.name = "Thoracic outlet syndrome";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 32;
+        symptom.name = "Pain in the shoulder(axillary)";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 33;
+        symptom.name = "Weight loss(2~3개월 내 10%이상)";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 34;
+        symptom.name = "Night pain";
+        symptoms.add(symptom);
+
+        symptom = new Symptom();
+        symptom.id = 35;
+        symptom.name = "Chest tightness";
+        symptoms.add(symptom);
+
         for(int i = 0; i < symptoms.size(); i++) {
             symptomDao.insertAll(symptoms.get(i));
         }
         List<Symptom> getTest = symptomDao.getAll();
-        Log.d("test12", getTest.get(0).name);
+
+        for(int i = 0; i < getTest.size(); i++) {
+            Log.d("test12", getTest.get(i).name);
+        }
+
 
         DiseaseDao diseaseDao = db.diseaseDao();
 
