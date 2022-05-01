@@ -15,7 +15,7 @@ public class RecordActivitiy extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.save_menu, menu);
+        getMenuInflater().inflate(R.menu.add_new_record, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -23,10 +23,10 @@ public class RecordActivitiy extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int curId = item.getItemId();
         switch (curId){
-            case R.id.save:
-                Toast.makeText(this, "저장되었습니다.", Toast.LENGTH_SHORT).show();
-                //여기서 DB에 노트적은거 저장하면됨
-
+            case R.id.new_record:
+                Toast.makeText(this, "새로운 기록을 추가합니다.", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent( RecordActivitiy.this, CheckSymptomActivity.class);
+                startActivity(intent2);
                 finish();
                 break;
         }

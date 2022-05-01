@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         DiseaseDao diseaseDao = db.diseaseDao();
 
         List<Disease> getTest2 = diseaseDao.getAll();
-        Log.d("test12", getTest2.get(0).name);
+        //Log.d("test12", getTest2.get(0).name);
 
         db.close();
 

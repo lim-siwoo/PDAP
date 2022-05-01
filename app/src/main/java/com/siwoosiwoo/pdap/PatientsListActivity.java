@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.siwoosiwoo.pdap.dao.AppDatabase;
 import com.siwoosiwoo.pdap.dao.DiseaseDao;
@@ -112,6 +113,8 @@ public class PatientsListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent2 = new Intent(PatientsListActivity.this, RecordActivitiy.class);
+                String toast = list.get(i);
+                Toast.makeText(PatientsListActivity.this, toast, Toast.LENGTH_SHORT).show();//테스트요
                 startActivity(intent2);
             }
         });

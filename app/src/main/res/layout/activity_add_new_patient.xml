@@ -24,7 +24,7 @@
         android:layout_alignTop="@+id/patientName"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="홍길동"/>
 
     <TextView
         android:id="@+id/ChartNumbertextView"

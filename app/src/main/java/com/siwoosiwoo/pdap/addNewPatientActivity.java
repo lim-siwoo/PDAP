@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.siwoosiwoo.pdap.dao.AppDatabase;
 import com.siwoosiwoo.pdap.dao.Patient;
@@ -99,10 +100,19 @@ public class addNewPatientActivity extends AppCompatActivity {
                 }
                 patientDao.insertAll(newPatient);
                 db.close();
-
+                Intent intent2 = new Intent(addNewPatientActivity.this, CheckSymptomActivity.class);
                 setResult(200);
-                finish();
+                startActivity(intent2);
             }
         });
+
+    }
+    
+
+    @Override
+    protected void onStop() {
+        setResult(200);
+        finish();
+        super.onStop();
     }
 }
