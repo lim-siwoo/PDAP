@@ -113,8 +113,11 @@ public class PatientsListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent2 = new Intent(PatientsListActivity.this, RecordActivitiy.class);
-                String toast = list.get(i);
-                Toast.makeText(PatientsListActivity.this, toast, Toast.LENGTH_SHORT).show();//테스트요
+                String chartNumber = list.get(i);
+                String[] split = chartNumber.split(" ");
+
+                intent2.putExtra("patientId", split[0]);
+
                 startActivity(intent2);
             }
         });

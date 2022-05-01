@@ -25,6 +25,7 @@ import com.siwoosiwoo.pdap.dao.PatientDatabase;
 
 import java.sql.Date;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class addNewPatientActivity extends AppCompatActivity {
@@ -46,11 +47,11 @@ public class addNewPatientActivity extends AppCompatActivity {
         confirmButton = findViewById(R.id.OKbutton);
         sexRadioGroup = findViewById(R.id.SexRadioGroup);
         maleRadio = findViewById(R.id.maleRadio);
-        PatientDatabase db = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
+        PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
                 .allowMainThreadQueries()
                 .build();
 
-        PatientDao patientDao = db.patientDao();
+        PatientDao patientDao = pdb.patientDao();
 
 
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -98,9 +99,14 @@ public class addNewPatientActivity extends AppCompatActivity {
                 } else {
                     newPatient.sex = "f";
                 }
+
+                newPatient.recordIds=new ArrayList<>();
                 patientDao.insertAll(newPatient);
-                db.close();
+
+
+                pdb.close();
                 Intent intent2 = new Intent(addNewPatientActivity.this, CheckSymptomActivity.class);
+                intent2.putExtra("patientId",Integer.toString(newPatient.id));
                 setResult(200);
                 startActivity(intent2);
             }

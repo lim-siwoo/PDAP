@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.siwoosiwoo.pdap.dao.MedicalDatabase;
+import com.siwoosiwoo.pdap.dao.Patient;
 import com.siwoosiwoo.pdap.dao.PatientDao;
 import com.siwoosiwoo.pdap.dao.PatientDatabase;
 import com.siwoosiwoo.pdap.dao.Record;
@@ -36,6 +37,7 @@ public class CheckSymptomActivity extends AppCompatActivity {
 
     LinearLayout linearMain;
     CheckBox checkBox;
+    private String patientId;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,15 +85,34 @@ public class CheckSymptomActivity extends AppCompatActivity {
                 RecordDao recordDao = Pdb.recordDao();
                 recordDao.insertAll(record);
                 String TAG = "logRecordList";
-                List<Record> logRecordList = recordDao.getAll();
+                List<Record> logRecordList = recordDao.getAll();    //밑에 로그는 삭제해도 되는데 얘는 안됨
                 Log.d(TAG, "DB inserted record: "+logRecordList.get(0).recordDate);
                 Log.d(TAG, "DB inserted record: "+logRecordList.get(0).symptomIds.get(0));
+
+
+                PatientDao patientDao = Pdb.patientDao();
+                Patient patient = patientDao.findPatient(Integer.parseInt(patientId));
+                ArrayList<String> recordsIds = patient.recordIds;
+
+                recordsIds.add(Integer.toString(logRecordList.get(logRecordList.size()-1).id));
+
+                patient.recordIds = recordsIds;
+                patientDao.updateAll(patient);
+//
+//                Patient patient = patientDao.findPatient(patientIDInt); //현재 선택된 Patient의 정보를 저장했음.
+//                ArrayList<String> records = patient.recordIds;//환자가 가지고있는 레코드 정보를 여기 저장함
+
+
                 Pdb.close();//DB닫아줌
 
 
 
-                Intent intent = new Intent(CheckSymptomActivity.this,RecordActivitiy.class);
+                Intent intent = new Intent(CheckSymptomActivity.this, RecordActivitiy.class);
+                intent.putExtra("patientId", Integer.toString(patient.id));
                 startActivity(intent);
+
+                //intent intent = new Intent(CheckSymptomActivity.this,RecordActivitiy.class);
+                //startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -105,6 +126,8 @@ public class CheckSymptomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_check_symptom);
         linearMain = (LinearLayout) findViewById(R.id.checkbox_layout);
 
+        Intent receiveIntent = getIntent();
+        patientId = receiveIntent.getStringExtra("patientId");
 
 
 

@@ -9,6 +9,9 @@ public interface RecordDao {
     @Query("SELECT * FROM record")
     List<Record> getAll();
 
+    @Query("SELECT * FROM record WHERE id = :recordId")
+    Record findRecord(int recordId);
+
     @Insert
     void insertAll(Record... records);
 
