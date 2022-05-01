@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -146,9 +147,16 @@ public class PatientsListActivity extends AppCompatActivity {
         List<Patient> patients= patientDao.getAll();
         for(int i=0;i<patients.size();i++){
             Patient patient = patients.get(i);
+            int id = patient.id;
+            String name = patient.name;
+            String birthDate = patient.birthDate;
+            String sex = patient.sex;
 
+            String addList = id + " / " + name+ " / " + birthDate+ " / " + sex;
+
+            Log.d("text12", addList);
+            list.add(addList);
         }
-        list.add("0001/채수빈/여/20000101");
 
     }
 }
