@@ -30,15 +30,14 @@ import java.util.Calendar;
 
 public class addNewPatientActivity extends AppCompatActivity {
 
-
     private static final String TAG = "addNewPatientActivity";
     private String date;
-
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private Button confirmButton;
     private RadioGroup sexRadioGroup;
     private RadioButton maleRadio;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

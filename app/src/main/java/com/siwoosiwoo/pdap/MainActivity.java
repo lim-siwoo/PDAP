@@ -49,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        MedicalDatabase db = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
+        MedicalDatabase mdb = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
                 .createFromAsset("Medical.db")
                 .allowMainThreadQueries()
                 .build();
 
 
-        SymptomDao symptomDao = db.symptomDao();//여기서부터 Symptom 넣음
+        SymptomDao symptomDao = mdb.symptomDao();//여기서부터 Symptom 넣음
 
         List<Symptom> getTest = symptomDao.getAll();
 
@@ -64,12 +64,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        DiseaseDao diseaseDao = db.diseaseDao();
+        DiseaseDao diseaseDao = mdb.diseaseDao();
 
         List<Disease> getTest2 = diseaseDao.getAll();
         Log.d("test12", getTest2.get(0).name);
 
-        db.close();
+        mdb.close();
 
         Intent intent = new Intent(getApplicationContext(), PatientsListActivity.class);
         startActivity(intent);

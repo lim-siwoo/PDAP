@@ -53,15 +53,15 @@ public class CheckSymptomActivity extends AppCompatActivity {
                 Toast.makeText(this, "체크리스트를 저장합니다.", Toast.LENGTH_SHORT).show();
 
                 //여기서 DB에 저장해야함
-                MedicalDatabase Mdb = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
+                MedicalDatabase mdb = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
                         .createFromAsset("Medical.db")
                         .allowMainThreadQueries()
                         .build();
 
-                SymptomDao symptomDao = Mdb.symptomDao();
+                SymptomDao symptomDao = mdb.symptomDao();
 
                 List<Symptom> symptomsList = symptomDao.getAll();
-                Mdb.close();
+                mdb.close();
                 ArrayList<String> symptomIds = new ArrayList<>();
 
                 for (int i =0; i<symptomsList.size();i++){
@@ -78,11 +78,11 @@ public class CheckSymptomActivity extends AppCompatActivity {
                 record.recordDate = sdf.format(date);
                 record.symptomIds = symptomIds;
 
-                PatientDatabase Pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
+                PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
                         .allowMainThreadQueries()
                         .build();
 
-                RecordDao recordDao = Pdb.recordDao();
+                RecordDao recordDao = pdb.recordDao();
                 recordDao.insertAll(record);
                 String TAG = "logRecordList";
                 List<Record> logRecordList = recordDao.getAll();    //밑에 로그는 삭제해도 되는데 얘는 안됨
@@ -90,7 +90,7 @@ public class CheckSymptomActivity extends AppCompatActivity {
                 Log.d(TAG, "DB inserted record: "+logRecordList.get(0).symptomIds.get(0));
 
 
-                PatientDao patientDao = Pdb.patientDao();
+                PatientDao patientDao = pdb.patientDao();
                 Patient patient = patientDao.findPatient(Integer.parseInt(patientId));
                 ArrayList<String> recordsIds = patient.recordIds;
 
@@ -103,7 +103,7 @@ public class CheckSymptomActivity extends AppCompatActivity {
 //                ArrayList<String> records = patient.recordIds;//환자가 가지고있는 레코드 정보를 여기 저장함
 
 
-                Pdb.close();//DB닫아줌
+                pdb.close();//DB닫아줌
 
 
 
@@ -138,15 +138,15 @@ public class CheckSymptomActivity extends AppCompatActivity {
          */
 //        LinkedHashMap<Integer, String> symptom = new LinkedHashMap<Integer, String>();//밑에처럼 동적추가 가능함
 
-        MedicalDatabase Mdb = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
+        MedicalDatabase mdb = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
                 .allowMainThreadQueries()
                 .build();
 
-        SymptomDao symptomDao = Mdb.symptomDao();
+        SymptomDao symptomDao = mdb.symptomDao();
 
         List<Symptom> symptomsList = symptomDao.getAll();
 
-        Mdb.close();
+        mdb.close();
 
         for (int i =0; i<symptomsList.size();i++){
 

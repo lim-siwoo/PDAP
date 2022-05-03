@@ -30,14 +30,13 @@ import java.util.List;
 
 public class PatientsListActivity extends AppCompatActivity {
 
-
     private List<String> list;          // 데이터를 넣은 리스트변수
     private ListView listView;          // 검색을 보여줄 리스트변수
     private EditText editSearch;        // 검색어를 입력할 Input 창
     private SearchAdapter adapter;      // 리스트뷰에 연결할 아답터
     private ArrayList<String> arraylist;
 
-    private PatientDatabase db; //룸db를 선언할 데이터 베이스 선언
+    private PatientDatabase pdb; //룸pdb를 선언할 데이터 베이스 선언
     private PatientDao patientDao;//이 자바 파일에서는 patient 정보를 사용해야 하므로 선언
 
     @Override
@@ -152,12 +151,12 @@ public class PatientsListActivity extends AppCompatActivity {
 
     // 검색에 사용될 데이터를 리스트에 추가한다.
     private void settingList() {
-        db = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
+        pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
                 .allowMainThreadQueries()
                 .build();
-        patientDao = db.patientDao();
+        patientDao = pdb.patientDao();
         List<Patient> patients= patientDao.getAll();
-        db.close();
+        pdb.close();
 
 //        Log.d("test12", "settingList called");
 
