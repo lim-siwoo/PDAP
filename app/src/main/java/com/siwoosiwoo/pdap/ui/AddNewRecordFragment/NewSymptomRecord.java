@@ -73,9 +73,6 @@ public class NewSymptomRecord extends Fragment {
         List<Symptom> symptomsList = symptomDao.getAll();//환자가 가지고있는 레코드 정보를 여기 저장함
 
         for (int i =0; i<symptomsList.size();i++){
-
-//            symptom.put(symptomsList.get(i).id,symptomsList.get(i).name);
-
             checkBox = new CheckBox(getActivity());
             checkBox.setId(symptomsList.get(i).id);
             checkBox.setText(symptomsList.get(i).name);
