@@ -98,9 +98,6 @@ public class CheckSymptomActivity extends AppCompatActivity {
 
                 patient.recordIds = recordsIds;
                 patientDao.updateAll(patient);
-//
-//                Patient patient = patientDao.findPatient(patientIDInt); //현재 선택된 Patient의 정보를 저장했음.
-//                ArrayList<String> records = patient.recordIds;//환자가 가지고있는 레코드 정보를 여기 저장함
 
 
                 pdb.close();//DB닫아줌
@@ -110,9 +107,7 @@ public class CheckSymptomActivity extends AppCompatActivity {
                 Intent intent = new Intent(CheckSymptomActivity.this, RecordActivitiy.class);
                 intent.putExtra("patientId", Integer.toString(patient.id));
                 startActivity(intent);
-                finish();
-                //intent intent = new Intent(CheckSymptomActivity.this,RecordActivitiy.class);
-                //startActivity(intent);
+
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -130,14 +125,6 @@ public class CheckSymptomActivity extends AppCompatActivity {
         patientId = receiveIntent.getStringExtra("patientId");
 
 
-
-
-        /**
-         * create linked hash map for store item you can get value from database
-         * or server also
-         */
-//        LinkedHashMap<Integer, String> symptom = new LinkedHashMap<Integer, String>();//밑에처럼 동적추가 가능함
-
         MedicalDatabase mdb = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
                 .allowMainThreadQueries()
                 .build();
@@ -149,9 +136,6 @@ public class CheckSymptomActivity extends AppCompatActivity {
         mdb.close();
 
         for (int i =0; i<symptomsList.size();i++){
-
-//            symptom.put(symptomsList.get(i).id,symptomsList.get(i).name);
-
             checkBox = new CheckBox(this);
             checkBox.setId(symptomsList.get(i).id);
             checkBox.setText(symptomsList.get(i).name);
@@ -159,21 +143,7 @@ public class CheckSymptomActivity extends AppCompatActivity {
             linearMain.addView(checkBox);
         }
 
-/*        Set<?> set = symptom.entrySet();
-        // Get an iterator
-        Iterator<?> i = set.iterator();
-        // Display elements
-        while (i.hasNext()) {
-            @SuppressWarnings("rawtypes")
-            Map.Entry me = (Map.Entry) i.next();
-            System.out.print(me.getKey() + ": ");
-            System.out.println(me.getValue());
-            checkBox = new CheckBox(this);
-            checkBox.setId(Integer.parseInt(me.getKey().toString()));
-            checkBox.setText(me.getValue().toString());
-            checkBox.setOnClickListener(getOnClickDoSomething(checkBox));
-            linearMain.addView(checkBox);
-        }*/
+
     }
     View.OnClickListener getOnClickDoSomething(final Button button) {
         return new View.OnClickListener() {
