@@ -104,7 +104,7 @@ public class addNewPatientActivity extends AppCompatActivity {
 
 
                 pdb.close();
-                Intent intent2 = new Intent(addNewPatientActivity.this, CheckSymptomActivity.class);
+                Intent intent2 = new Intent(addNewPatientActivity.this, AddNewRecordActivity.class);
                 intent2.putExtra("patientId",Integer.toString(newPatient.id));
                 setResult(200);
                 startActivity(intent2);
