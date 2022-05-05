@@ -10,11 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.siwoosiwoo.pdap.dao.MedicalDatabase;
 import com.siwoosiwoo.pdap.dao.Patient;
@@ -24,10 +21,7 @@ import com.siwoosiwoo.pdap.dao.Record;
 import com.siwoosiwoo.pdap.dao.RecordDao;
 import com.siwoosiwoo.pdap.dao.Symptom;
 import com.siwoosiwoo.pdap.dao.SymptomDao;
-import com.siwoosiwoo.pdap.ui.AddNewRecordFragment.NewMemoRecord;
 import com.siwoosiwoo.pdap.ui.AddNewRecordFragment.NewSymptomRecord;
-import com.siwoosiwoo.pdap.ui.patientRecordFragment.List_Fragment;
-import com.siwoosiwoo.pdap.ui.patientRecordFragment.Memo_Fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,7 +33,6 @@ public class AddNewRecordActivity extends AppCompatActivity {
     String patientId;
     Fragment fragment_new_symptom_record;
     Fragment fragment_new_memo_record;
-    LinearLayout linearMain;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.save_menu, menu);

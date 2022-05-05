@@ -9,17 +9,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.siwoosiwoo.pdap.dao.DiseaseDao;
 import com.siwoosiwoo.pdap.dao.Patient;
 import com.siwoosiwoo.pdap.dao.PatientDao;
 import com.siwoosiwoo.pdap.dao.PatientDatabase;
@@ -31,13 +25,9 @@ import java.util.List;
 public class PatientsListActivity extends AppCompatActivity {
 
     private List<String> list;          // 데이터를 넣은 리스트변수
-    private ListView listView;          // 검색을 보여줄 리스트변수
     private EditText editSearch;        // 검색어를 입력할 Input 창
     private SearchAdapter adapter;      // 리스트뷰에 연결할 아답터
     private ArrayList<String> arraylist;
-
-    private PatientDatabase pdb; //룸pdb를 선언할 데이터 베이스 선언
-    private PatientDao patientDao;//이 자바 파일에서는 patient 정보를 사용해야 하므로 선언
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,7 +51,6 @@ public class PatientsListActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-//        Log.d("test12", "onActivituResult");
         settingList();
         adapter.notifyDataSetChanged();
     }
@@ -71,7 +60,8 @@ public class PatientsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients_list);
         editSearch = findViewById(R.id.editSearch);
-        listView = findViewById(R.id.listView);
+        // 검색을 보여줄 리스트변수
+        ListView listView = findViewById(R.id.listView);
 
         // 리스트를 생성한다.
         list = new ArrayList<>();
@@ -108,17 +98,14 @@ public class PatientsListActivity extends AppCompatActivity {
                 search(text);
             }
         });
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent2 = new Intent(PatientsListActivity.this, RecordActivitiy.class);
-                String chartNumber = list.get(i);
-                String[] split = chartNumber.split(" ");
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            Intent intent2 = new Intent(PatientsListActivity.this, RecordActivitiy.class);
+            String chartNumber = list.get(i);
+            String[] split = chartNumber.split(" ");
 
-                intent2.putExtra("patientId", split[0]);
+            intent2.putExtra("patientId", split[0]);
 
-                startActivity(intent2);
-            }
+            startActivity(intent2);
         });
 
     }
@@ -151,10 +138,12 @@ public class PatientsListActivity extends AppCompatActivity {
 
     // 검색에 사용될 데이터를 리스트에 추가한다.
     private void settingList() {
-        pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
+        //룸pdb를 선언할 데이터 베이스 선언
+        PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
                 .allowMainThreadQueries()
                 .build();
-        patientDao = pdb.patientDao();
+        //이 자바 파일에서는 patient 정보를 사용해야 하므로 선언
+        PatientDao patientDao = pdb.patientDao();
         List<Patient> patients= patientDao.getAll();
         pdb.close();
 
