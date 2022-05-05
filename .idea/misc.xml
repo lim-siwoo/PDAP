@@ -26,7 +26,7 @@
         <entry key="app/src/main/res/layout/fragment_memo_record.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_memo_symptom.xml" value="0.14336372847011145" />
         <entry key="app/src/main/res/layout/fragment_new_memo_record.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_new_symptom_record.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_new_symptom_record.xml" value="0.165" />
         <entry key="app/src/main/res/layout/symptom_layout.xml" value="0.14336372847011145" />
         <entry key="app/src/main/res/layout/symptom_note.xml" value="0.14336372847011145" />
         <entry key="app/src/main/res/menu/save_menu.xml" value="0.2111111111111111" />
