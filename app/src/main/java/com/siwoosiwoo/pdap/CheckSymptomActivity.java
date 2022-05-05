@@ -110,7 +110,7 @@ public class CheckSymptomActivity extends AppCompatActivity {
                 Intent intent = new Intent(CheckSymptomActivity.this, RecordActivitiy.class);
                 intent.putExtra("patientId", Integer.toString(patient.id));
                 startActivity(intent);
-
+                finish();
                 //intent intent = new Intent(CheckSymptomActivity.this,RecordActivitiy.class);
                 //startActivity(intent);
                 break;

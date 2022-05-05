@@ -1,5 +1,6 @@
 package com.siwoosiwoo.pdap;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.siwoosiwoo.pdap.dao.MedicalDatabase;
 import com.siwoosiwoo.pdap.dao.DiseaseDao;
@@ -21,6 +23,8 @@ public class RecordActivitiy extends AppCompatActivity {
 
     String patientId;
     List_Fragment fragment1;
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,6 +43,13 @@ public class RecordActivitiy extends AppCompatActivity {
                 startActivity(intent2);
                 finish();
                 break;
+            case android.R.id.home:
+                //뒤로가기버튼 눌렀을때
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -47,6 +58,10 @@ public class RecordActivitiy extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.symptom_layout);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         Intent intent = getIntent();
         patientId = intent.getStringExtra("patientId");//PatientsListActivity에서 해당하는 환자정보의 차트번호를 가져옴

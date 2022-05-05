@@ -3,48 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/activity_add_new_patient.xml" value="0.335" />
-        <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/activity_patients_list.xml" value="0.31354166666666666" />
-        <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/fragment_list_symptom.xml" value="0.31354166666666666" />
-        <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/fragment_memo_symptom.xml" value="0.31354166666666666" />
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/layout.xml" value="0.5494791666666666" />
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/patient_list.xml" value="0.38617200674536256" />
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/patients.xml" value="0.3333333333333333" />
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/symptom.xml" value="0.21203703703703702" />
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/symptom_check.xml" value="0.26721120186697783" />
-        <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/symptom_layout.xml" value="0.31354166666666666" />
-        <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/symptom_note.xml" value="0.1716485507246377" />
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/symtom_check.xml" value="0.1" />
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/symtom_checklist.xml" value="0.5494791666666666" />
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/symtom_note.xml" value="0.5494791666666666" />
+        <entry key="..\:/PDAP/app/src/main/res/layout/activity_check_symptom.xml" value="0.24947916666666667" />
         <entry key="..\:/PDAP/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/PDAP/app/src/main/res/layout/patient_diagnosis_list.xml" value="0.24947916666666667" />
+        <entry key="..\:/PDAP/app/src/main/res/layout/fragment_list_record.xml" value="0.24947916666666667" />
+        <entry key="..\:/PDAP/app/src/main/res/layout/fragment_list_symptom.xml" value="0.24947916666666667" />
+        <entry key="..\:/PDAP/app/src/main/res/layout/patient_diagnosis_list.xml" value="0.2" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patient_list.xml" value="0.16" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patients.xml" value="0.12473958333333333" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout-w1240dp/activity_new_paitent.xml" value="0.1536144578313253" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout-w936dp/activity_new_paitent.xml" value="0.179296875" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/activity_add_new_patient.xml" value="0.4421875" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/activity_check_disease_activitiy.xml" value="0.4421875" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/activity_new_paitent.xml" value="0.2390625" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/activity_patient_list.xml" value="0.4421875" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/activity_patients_list.xml" value="0.4421875" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/fragment_first_.xml" value="0.4421875" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/fragment_first_symptom.xml" value="0.21603260869565216" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/fragment_list_symptom.xml" value="0.42028985507246375" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/fragment_memo_symptom.xml" value="0.42028985507246375" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/fragment_second_.xml" value="0.4421875" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/fragment_second_symptom.xml" value="0.22509057971014493" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/main_activity.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patient_list.xml" value="0.2390625" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patient_record_screen.xml" value="0.2390625" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patient_result_list_fragment.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patient_symptom_list.xml" value="0.2390625" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/patients.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/symptom.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/symptom_check.xml" value="0.2390625" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/symptom_checklist.xml" value="0.2390625" />
-        <entry key="..\:/Users/sisi_/AndroidStudioProjects/PDAP/app/src/main/res/layout/symptom_note.xml" value="0.4421875" />
-        <entry key="app/src/main/res/layout/activity_add_new_patient.xml" value="0.3015625" />
       </map>
     </option>
   </component>
