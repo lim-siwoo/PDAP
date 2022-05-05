@@ -91,9 +91,6 @@ public class List_Fragment extends Fragment {
             recordToScreen.add(toScreen);
         }
 
-
-
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,recordToScreen);
 
         listView.setAdapter(adapter);
