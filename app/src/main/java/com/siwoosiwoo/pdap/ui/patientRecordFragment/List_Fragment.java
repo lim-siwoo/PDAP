@@ -14,13 +14,11 @@ import android.widget.ListView;
 
 import com.siwoosiwoo.pdap.R;
 import com.siwoosiwoo.pdap.dao.MedicalDatabase;
-import com.siwoosiwoo.pdap.dao.DiseaseDao;
 import com.siwoosiwoo.pdap.dao.Patient;
 import com.siwoosiwoo.pdap.dao.PatientDao;
 import com.siwoosiwoo.pdap.dao.PatientDatabase;
 import com.siwoosiwoo.pdap.dao.Record;
 import com.siwoosiwoo.pdap.dao.RecordDao;
-import com.siwoosiwoo.pdap.dao.SymptomDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +41,7 @@ public class List_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        fragmentView = inflater.inflate(R.layout.fragment_list_symptom, container, false);
+        fragmentView = inflater.inflate(R.layout.fragment_list_record, container, false);
         listView = fragmentView.findViewById(R.id.listView_item);
 
         Bundle bundle = getArguments(); // RecordActivity에서 전달한 번들을 저장 patientID(ChartNum)이 저장되어있댜
