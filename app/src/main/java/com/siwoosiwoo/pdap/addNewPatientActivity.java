@@ -94,9 +94,9 @@ public class addNewPatientActivity extends AppCompatActivity {
 
                 int selectedId = sexRadioGroup.getCheckedRadioButtonId();
                 if(maleRadio.getId() == selectedId) {
-                    newPatient.sex = "m";
+                    newPatient.sex = "M";
                 } else {
-                    newPatient.sex = "f";
+                    newPatient.sex = "F";
                 }
 
                 newPatient.recordIds=new ArrayList<>();

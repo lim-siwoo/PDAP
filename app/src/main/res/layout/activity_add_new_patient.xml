@@ -13,18 +13,23 @@
         android:layout_height="wrap_content"
         android:text="환자 이름"
         android:layout_marginTop="80dp"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_margin = "20px"/>
 
     <EditText
         android:id="@+id/editPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@+id/patientName"
         android:layout_alignTop="@+id/patientName"
+        android:layout_marginStart="20px"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="20px"
+        android:layout_marginBottom="20px"
+        android:layout_toRightOf="@+id/patientName"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="홍길동"/>
+        android:hint="홍길동"
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/ChartNumbertextView"
@@ -33,15 +38,19 @@
         android:layout_below="@+id/patientName"
         android:layout_marginTop="20dp"
         android:text="차트 번호"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_margin = "20px"/>
 
     <EditText
         android:id="@+id/editChartNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/ChartNumbertextView"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginStart="20px"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="20px"
+        android:layout_marginBottom="20px"
         android:layout_toRightOf="@+id/ChartNumbertextView"
         android:ems="10"
         android:hint="0000"
@@ -53,19 +62,22 @@
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_margin = "20px">
 
         <RadioButton
             android:id="@+id/maleRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="남성" />
+            android:text="남성"
+            android:layout_margin = "20px"/>
 
         <RadioButton
             android:id="@+id/femaleRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="여성" />
+            android:text="여성"
+            android:layout_margin = "20px"/>
     </RadioGroup>
 
     <TextView
@@ -75,7 +87,7 @@
         android:text="생년월일"
         android:textSize="20dp"
         android:layout_below="@id/SexRadioGroup"
-        />
+        android:layout_margin = "20px"/>
 
 
     <TextView
@@ -87,7 +99,8 @@
         android:layout_marginTop="0dp"
         android:layout_toRightOf="@+id/birthTextView"
         android:text="YYYY/MM/DD"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_margin = "20px"/>
 
     <Button
         android:id="@+id/OKbutton"
@@ -95,6 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/BirthDate"
         android:layout_marginTop="60dp"
-        android:text="확인" />
+        android:text="확인"
+        android:layout_margin = "20px"/>
 
 </RelativeLayout>
