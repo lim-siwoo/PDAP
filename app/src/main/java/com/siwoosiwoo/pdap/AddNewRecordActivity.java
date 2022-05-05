@@ -108,7 +108,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
                 Intent intent = new Intent(AddNewRecordActivity.this, RecordActivitiy.class);
                 intent.putExtra("patientId", Integer.toString(patient.id));
                 startActivity(intent);
-
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
