@@ -24,6 +24,7 @@ import com.siwoosiwoo.pdap.ui.patientRecordFragment.List_Fragment;
 import com.siwoosiwoo.pdap.ui.patientRecordFragment.Memo_Fragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,9 @@ public class RecordActivitiy extends AppCompatActivity implements List_Fragment.
     private MedicalDatabase mdb; //룸db를 선언할 데이터 베이스 선언
     private RecordDao recordDao;
     private DiseaseDao diseaseDao;
+
+    private ArrayList<Integer> trueSymptom;
+    private ArrayList<Integer> trueWeight;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,6 +102,8 @@ public class RecordActivitiy extends AppCompatActivity implements List_Fragment.
         recordDao = pdb.recordDao();//다오 선언
         diseaseDao = mdb.diseaseDao();
 
+        trueSymptom = new ArrayList<Integer>();
+        trueWeight = new ArrayList<Integer>();
 
         Bundle bundle = new Bundle();
         bundle.putString("patientId", patientId);//해당하는 환자정보의 차트번호를 리스트에 띄울 List_Fragment
@@ -159,12 +165,27 @@ public class RecordActivitiy extends AppCompatActivity implements List_Fragment.
             count=0;
         }
 
+        for(int key : resultDesease.keySet()){
+//            trueSymptom.add(key);
+            trueWeight.add(resultDesease.get(key));
+        }
+        Collections.sort(trueWeight, Collections.reverseOrder());
+
         Disease disease;
+
+        fragment2.initScrollView();
+        fragment2.setText("");
+        if(record.description!=null){
+            fragment2.setText(record.description);
+            fragment2.appendText("\n\n");
+        }
+
+
         //View fragment = inflater.inflate(R.layout.fragment_memo_record, container, false);
         //fragment2.textView = fragment.findViewById(R.id.memo_edit);
         fragment2.initScrollView();
         fragment2.setText("");
-        //Log.d("Id",)
+
         if(record.description!=null) {
             fragment2.setText(record.description);//텍스트뷰에 디스크립션 추가
             fragment2.appendText("\n\n");
