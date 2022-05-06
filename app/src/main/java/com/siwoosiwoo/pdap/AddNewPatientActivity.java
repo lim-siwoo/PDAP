@@ -1,5 +1,6 @@
 package com.siwoosiwoo.pdap;
 
+import android.app.ActionBar;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -33,6 +34,8 @@ public class AddNewPatientActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_patient);
+
+        getSupportActionBar().hide();
         mDisplayDate = (TextView) findViewById(R.id.BirthDate);
         Button confirmButton = findViewById(R.id.OKbutton);
         sexRadioGroup = findViewById(R.id.SexRadioGroup);
