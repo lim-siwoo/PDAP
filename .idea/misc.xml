@@ -11,13 +11,16 @@
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/symtom_check.xml" value="0.1" />
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/symtom_checklist.xml" value="0.5494791666666666" />
         <entry key="..\:/Android_Studio_WorkSpace/PDAP/app/src/main/res/layout/symtom_note.xml" value="0.5494791666666666" />
-        <entry key="..\:/PDAP/app/src/main/res/layout/activity_add_new_patient.xml" value="0.12132725430597771" />
+        <entry key="..\:/PDAP/app/src/main/res/drawable/ic_baseline_person.xml" value="0.1205" />
+        <entry key="..\:/PDAP/app/src/main/res/drawable/round_border.xml" value="0.1205" />
+        <entry key="..\:/PDAP/app/src/main/res/layout/activity_add_new_patient.xml" value="0.264" />
         <entry key="..\:/PDAP/app/src/main/res/layout/activity_add_new_record.xml" value="0.12132725430597771" />
         <entry key="..\:/PDAP/app/src/main/res/layout/activity_check_symptom.xml" value="0.24947916666666667" />
         <entry key="..\:/PDAP/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/PDAP/app/src/main/res/layout/activity_patients_list.xml" value="0.1" />
         <entry key="..\:/PDAP/app/src/main/res/layout/fragment_list_record.xml" value="0.24947916666666667" />
         <entry key="..\:/PDAP/app/src/main/res/layout/fragment_list_symptom.xml" value="0.24947916666666667" />
+        <entry key="..\:/PDAP/app/src/main/res/layout/fragment_new_symptom_record.xml" value="0.23385416666666667" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patient_diagnosis_list.xml" value="0.2" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patient_list.xml" value="0.16" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patients.xml" value="0.12473958333333333" />
