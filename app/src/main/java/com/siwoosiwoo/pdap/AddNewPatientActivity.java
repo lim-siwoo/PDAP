@@ -21,7 +21,7 @@ import com.siwoosiwoo.pdap.dao.PatientDatabase;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class addNewPatientActivity extends AppCompatActivity {
+public class AddNewPatientActivity extends AppCompatActivity {
 
     private String date;
     private TextView mDisplayDate;
@@ -50,7 +50,7 @@ public class addNewPatientActivity extends AppCompatActivity {
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog dialog = new DatePickerDialog(addNewPatientActivity.this,
+            DatePickerDialog dialog = new DatePickerDialog(AddNewPatientActivity.this,
                     android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                     mDateSetListener,
                     year,month,day);
@@ -87,7 +87,7 @@ public class addNewPatientActivity extends AppCompatActivity {
 
 
             pdb.close();
-            Intent intent2 = new Intent(addNewPatientActivity.this, AddNewRecordActivity.class);
+            Intent intent2 = new Intent(AddNewPatientActivity.this, AddNewRecordActivity.class);
             intent2.putExtra("patientId",Integer.toString(newPatient.id));
             setResult(200);
             startActivity(intent2);

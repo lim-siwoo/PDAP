@@ -40,7 +40,7 @@ public class PatientsListActivity extends AppCompatActivity {
         int curId = item.getItemId();
         switch (curId){
             case R.id.addPatient:
-                Intent intent = new Intent(PatientsListActivity.this, addNewPatientActivity.class);
+                Intent intent = new Intent(PatientsListActivity.this, AddNewPatientActivity.class);
                 startActivityForResult(intent, 101);
                 break;
         }

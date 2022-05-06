@@ -16,7 +16,7 @@
             android:name=".CheckSymptomActivity"
             android:exported="false" />
         <activity
-            android:name=".addNewPatientActivity"
+            android:name=".AddNewPatientActivity"
             android:exported="false" />
         <activity
             android:name=".PatientsListActivity"

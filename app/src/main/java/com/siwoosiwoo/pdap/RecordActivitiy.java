@@ -51,7 +51,7 @@ public class RecordActivitiy extends AppCompatActivity implements List_Fragment.
         switch (curId){
             case R.id.new_record:
                 Toast.makeText(this, "새로운 기록을 추가합니다.", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent( RecordActivitiy.this, CheckSymptomActivity.class);
+                Intent intent2 = new Intent( RecordActivitiy.this, AddNewRecordActivity.class);
                 intent2.putExtra("patientId", patientId);
                 startActivity(intent2);
                 finish();
