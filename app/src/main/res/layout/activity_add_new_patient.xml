@@ -1,122 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".addNewPatientActivity">
 
-    <TextView
-        android:id="@+id/patientName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20px"
-        android:layout_marginTop="20px"
-        android:layout_marginEnd="20px"
-        android:layout_marginBottom="20px"
-        android:text="환자 이름"
-        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/editPersonName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/patientName"
-        android:layout_marginStart="20px"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="20px"
-        android:layout_marginBottom="20px"
-        android:layout_toRightOf="@+id/patientName"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/round_border"
         android:drawableStart="@drawable/ic_baseline_person"
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="홍길동"
         android:inputType="textPersonName"
-        android:padding="16dp" />
-
-    <TextView
-        android:id="@+id/ChartNumbertextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/patientName"
-        android:layout_marginStart="20px"
-        android:layout_marginTop="20px"
-        android:layout_marginEnd="20px"
-        android:layout_marginBottom="20px"
-        android:text="차트 번호"
-        android:textSize="20dp" />
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.311" />
 
     <EditText
         android:id="@+id/editChartNumber"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ChartNumbertextView"
-        android:layout_marginStart="20px"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="20px"
-        android:layout_marginBottom="20px"
-        android:layout_toRightOf="@+id/ChartNumbertextView"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_baseline_list"
+        android:drawablePadding="16sp"
         android:ems="10"
-        android:hint="0000"
-        android:inputType="number" />
+        android:hint="차트번호"
+        android:inputType="number"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/BirthDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPersonName"
+        app:layout_constraintVertical_bias="0.246" />
 
     <RadioGroup
-        android:layout_below="@+id/ChartNumbertextView"
         android:id="@+id/SexRadioGroup"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20px"
         android:orientation="horizontal"
-        android:layout_margin = "20px">
+        android:padding="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/BirthDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editChartNumber"
+        app:layout_constraintVertical_bias="0.53">
 
         <RadioButton
             android:id="@+id/maleRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="20px"
             android:text="남성"
-            android:layout_margin = "20px"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.43"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="341dp" />
 
         <RadioButton
             android:id="@+id/femaleRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="20px"
             android:text="여성"
-            android:layout_margin = "20px"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.617"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="341dp" />
     </RadioGroup>
 
     <TextView
-        android:id="@+id/birthTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="생년월일"
-        android:textSize="20dp"
-        android:layout_below="@id/SexRadioGroup"
-        android:layout_margin = "20px"/>
-
-
-    <TextView
         android:id="@+id/BirthDate"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/SexRadioGroup"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="0dp"
-        android:layout_toRightOf="@+id/birthTextView"
-        android:text="YYYY/MM/DD"
-        android:textSize="20dp"
-        android:layout_margin = "20px"/>
+        android:layout_margin="20px"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_baseline_date_range"
+        android:drawablePadding="16sp"
+        android:hint="생년월일"
+        android:padding="16dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/OKbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.346"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98" />
 
     <Button
         android:id="@+id/OKbutton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/BirthDate"
-        android:layout_marginTop="60dp"
-        android:text="확인"
-        android:layout_margin = "20px"/>
+        android:layout_margin="20px"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round_border"
+        android:text="환자 추가"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.901" />
 
-</RelativeLayout>
+    <View
+        android:id="@+id/backView"
+        android:layout_width="wrap_content"
+        android:layout_height="150sp"
+        android:background="@color/bady_blue"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/newPatientText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="신규환자 추가"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/backView"
+        app:layout_constraintStart_toEndOf="@+id/newPatientText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044"
+        app:srcCompat="@drawable/ic_baseline_person_add_alt_100" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
