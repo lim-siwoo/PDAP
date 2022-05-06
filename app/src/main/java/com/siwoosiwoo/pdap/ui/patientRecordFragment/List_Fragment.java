@@ -1,5 +1,6 @@
 package com.siwoosiwoo.pdap.ui.patientRecordFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,10 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.siwoosiwoo.pdap.PatientsListActivity;
 import com.siwoosiwoo.pdap.R;
+import com.siwoosiwoo.pdap.RecordActivitiy;
 import com.siwoosiwoo.pdap.dao.MedicalDatabase;
 import com.siwoosiwoo.pdap.dao.Patient;
 import com.siwoosiwoo.pdap.dao.PatientDao;
@@ -26,17 +30,25 @@ import java.util.List;
 
 public class List_Fragment extends Fragment {
 
-    private MedicalDatabase mdb; //룸db를 선언할 데이터 베이스 선언
     private PatientDatabase pdb;
     private PatientDao patientDao;//이 자바 파일에서는 patient 정보를 사용해야 하므로 선언
     private RecordDao recordDao;
     private int patientIDInt;
 
+    OnList_FragmentSelectedListner callback;//인터페이스 자료형 선언
 
     View fragmentView;
     ListView listView;
-
     ArrayList<String> recordToScreen = new ArrayList<>();//화면에 띄울 리스트 선언
+
+    public void setOnList_FragmentSelectedListner(OnList_FragmentSelectedListner callback){//인터페이스가 호출되면 인터페이스 자료형에 현재 값을 넣어준다
+        this.callback = callback;
+    }
+
+    public interface OnList_FragmentSelectedListner{//액티비티와 통신하기 위한 인터페이스 선언
+        public void onArticleSelected(int position);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,11 +65,6 @@ public class List_Fragment extends Fragment {
         String patientID = bundle.getString("patientId");
         Log.d("patientId",patientID+"3");
         patientIDInt = Integer.parseInt(patientID);
-
-        mdb = Room.databaseBuilder(getActivity(), MedicalDatabase.class, "Medical.db")  //프래그먼트에서는 getApplicationContext()를 사용하면 오류가 떠서 getActivity()를 사용해야함
-                //.createFromAsset("PDAP.db")
-                .allowMainThreadQueries()
-                .build();
 
         pdb = Room.databaseBuilder(getActivity(), PatientDatabase.class, "Patient.db")  //프래그먼트에서는 getApplicationContext()를 사용하면 오류가 떠서 getActivity()를 사용해야함
                 //.createFromAsset("PDAP.db")
@@ -94,6 +101,17 @@ public class List_Fragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,recordToScreen);
 
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String chart = recordToScreen.get(i);
+                String[] split = chart.split(" ");
+                int chartNumber = Integer.parseInt(split[0]);
+                callback.onArticleSelected(chartNumber);
+            }
+        });
         return fragmentView;
     }
+
 }

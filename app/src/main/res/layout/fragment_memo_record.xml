@@ -15,14 +15,17 @@
         android:textColor="#FFFFFF"
         android:background="#3552E5"
         android:text="Second Fragment" />
-
-    <EditText
-        android:id="@+id/memo_edit"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:ems="10"
-        android:gravity="top"
-        android:hint="선생님의 의견을 여기 적어주세요"
-        android:padding="10dp"
-        android:textSize="10dp"/>
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/memo_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:gravity="top"
+            android:padding="10dp"
+            android:textSize="10dp"/>
+    </ScrollView>
 </LinearLayout>

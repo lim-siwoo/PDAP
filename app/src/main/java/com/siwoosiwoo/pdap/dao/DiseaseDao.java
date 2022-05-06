@@ -8,6 +8,9 @@ public interface DiseaseDao {
     @Query("SELECT * FROM disease")
     List<Disease> getAll();
 
+    @Query("SELECT * FROM disease WHERE id = :diseaseId")
+    Disease findDisease(int diseaseId);
+
     @Insert
     void insertAll(Disease... diseases);
 

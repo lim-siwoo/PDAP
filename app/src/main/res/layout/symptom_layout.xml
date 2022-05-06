@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:layout_margin="20px"/>
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment
         android:id="@+id/fragment2"
         android:name="com.siwoosiwoo.pdap.ui.patientRecordFragment.Memo_Fragment"
         android:layout_width="match_parent"
