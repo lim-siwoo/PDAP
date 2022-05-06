@@ -120,11 +120,6 @@ public class AddNewRecordActivity extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("patientId", patientId);
-        if(bundle != null){
-            Log.d("patientId","번들에 값 있다.");
-        }else{
-            Log.d("patientId","번들에 값 없다.");
-        }
 
         fragment_new_symptom_record.setArguments(bundle);
 //        fragment_new_memo_record.setArguments(bundle);

@@ -21,6 +21,7 @@
         <entry key="..\:/PDAP/app/src/main/res/layout/patient_diagnosis_list.xml" value="0.2" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patient_list.xml" value="0.16" />
         <entry key="..\:/PDAP/app/src/main/res/layout/patients.xml" value="0.12473958333333333" />
+        <entry key="app/src/main/res/layout/fragment_new_symptom_record.xml" value="0.2427536231884058" />
       </map>
     </option>
   </component>
