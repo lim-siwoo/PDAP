@@ -160,7 +160,7 @@ public class RecordActivitiy extends AppCompatActivity implements List_Fragment.
                 }
             }
             if (count > 0) {
-                resultDesease.put(i, count);
+                resultDesease.put(i+1, count);
             }
             count=0;
         }
