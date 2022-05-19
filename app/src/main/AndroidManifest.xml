@@ -13,9 +13,6 @@
             android:name=".AddNewRecordActivity"
             android:exported="false" />
         <activity
-            android:name=".CheckSymptomActivity"
-            android:exported="false" />
-        <activity
             android:name=".AddNewPatientActivity"
             android:exported="false" />
         <activity

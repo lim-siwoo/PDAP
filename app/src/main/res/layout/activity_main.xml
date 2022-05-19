@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bady_blue"
     tools:context=".MainActivity">
 
-
-    <Button
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="PDAP"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--<Button
         android:id="@+id/goToPatientList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="환자리스트보러가기"
         android:layout_marginTop="300dp"
-        android:layout_marginRight="200dp"/>
+        android:layout_marginRight="200dp"/>-->
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
