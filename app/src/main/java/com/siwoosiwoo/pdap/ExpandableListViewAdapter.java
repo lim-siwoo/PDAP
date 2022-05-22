@@ -106,8 +106,13 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.list_symptom, null);
         }
+
         CheckBox expandedListCheckBox = (CheckBox) view.findViewById(R.id.expandedListItem);
-//        expandedListCheckBox.setId(expandedListSymptom.id);
+        expandedListCheckBox.setChecked(false);
+
+        if(checkedIds.contains(expandedListSymptom.id)) {
+            expandedListCheckBox.setChecked(true);
+        }
         expandedListCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,11 +124,6 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
             }
         });
 
-        if(checkedIds.contains(expandedListSymptom.id)) {
-            expandedListCheckBox.setChecked(true);
-        } else {
-            expandedListCheckBox.setChecked(false);
-        }
         expandedListCheckBox.setText(expandedListSymptom.name);
         return view;
     }
