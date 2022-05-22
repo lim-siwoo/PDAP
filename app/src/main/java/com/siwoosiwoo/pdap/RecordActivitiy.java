@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.siwoosiwoo.pdap.dao.Disease;
 import com.siwoosiwoo.pdap.dao.MedicalDatabase;
 import com.siwoosiwoo.pdap.dao.DiseaseDao;
+import com.siwoosiwoo.pdap.dao.Patient;
 import com.siwoosiwoo.pdap.dao.PatientDao;
 import com.siwoosiwoo.pdap.dao.PatientDatabase;
 import com.siwoosiwoo.pdap.dao.Record;
@@ -34,11 +35,13 @@ public class RecordActivitiy extends AppCompatActivity implements List_Fragment.
     String patientId;
     List_Fragment fragment1;
     Memo_Fragment fragment2;
+    Patient patient;
 
     private PatientDatabase pdb;
     private MedicalDatabase mdb; //룸db를 선언할 데이터 베이스 선언
     private RecordDao recordDao;
     private DiseaseDao diseaseDao;
+    private PatientDao patientDao;
 
     private ArrayList<Integer> trueSymptom;
     private ArrayList<Integer> trueWeight;
@@ -76,6 +79,7 @@ public class RecordActivitiy extends AppCompatActivity implements List_Fragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.symptom_layout);
 
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
@@ -101,9 +105,20 @@ public class RecordActivitiy extends AppCompatActivity implements List_Fragment.
 
         recordDao = pdb.recordDao();//다오 선언
         diseaseDao = mdb.diseaseDao();
+        patientDao = pdb.patientDao();
 
         trueSymptom = new ArrayList<Integer>();
         trueWeight = new ArrayList<Integer>();
+
+        patient = patientDao.findPatient(Integer.parseInt(patientId));
+
+        int id = patient.id;
+        String name = patient.name;
+        String birthDate = patient.birthDate;
+        String sex = patient.sex;
+
+        String patientInfo = id + " / " + name+ " / " + birthDate+ " / " + sex;
+        getSupportActionBar().setTitle(patientInfo);
 
         Bundle bundle = new Bundle();
         bundle.putString("patientId", patientId);//해당하는 환자정보의 차트번호를 리스트에 띄울 List_Fragment
