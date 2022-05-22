@@ -21,6 +21,7 @@ import com.siwoosiwoo.pdap.dao.Record;
 import com.siwoosiwoo.pdap.dao.RecordDao;
 import com.siwoosiwoo.pdap.dao.Symptom;
 import com.siwoosiwoo.pdap.dao.SymptomDao;
+import com.siwoosiwoo.pdap.ui.AddNewRecordFragment.NewMemoRecord;
 import com.siwoosiwoo.pdap.ui.AddNewRecordFragment.NewSymptomRecord;
 
 import java.text.SimpleDateFormat;
@@ -31,8 +32,8 @@ import java.util.List;
 public class AddNewRecordActivity extends AppCompatActivity {
 
     String patientId;
-    Fragment fragment_new_symptom_record;
-    Fragment fragment_new_memo_record;
+    NewSymptomRecord fragment_new_symptom_record;
+    NewMemoRecord fragment_new_memo_record;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.save_menu, menu);
@@ -44,8 +45,8 @@ public class AddNewRecordActivity extends AppCompatActivity {
         int curId = item.getItemId();
         switch (curId){
             case R.id.save:
-                fragment_new_symptom_record = getSupportFragmentManager().findFragmentById(R.id.fragment1);
-                fragment_new_memo_record = getSupportFragmentManager().findFragmentById(R.id.fragment2);
+                fragment_new_symptom_record = (NewSymptomRecord) getSupportFragmentManager().findFragmentById(R.id.fragment1);
+                fragment_new_memo_record = (NewMemoRecord) getSupportFragmentManager().findFragmentById(R.id.fragment2);
                 //여기서 DB에 저장해야함
                 MedicalDatabase mdb = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
                         .createFromAsset("Medical.db")
@@ -56,14 +57,12 @@ public class AddNewRecordActivity extends AppCompatActivity {
 
                 List<Symptom> symptomsList = symptomDao.getAll();
                 mdb.close();
+
+                ArrayList<Integer> checkedIds = fragment_new_symptom_record.getCheckedIds();
                 ArrayList<String> symptomIds = new ArrayList<>();
 
-                for (int i =0; i<symptomsList.size();i++){
-                    CheckBox tempCheckBox = fragment_new_symptom_record.getView().findViewById(symptomsList.get(i).id);
-
-                    if (tempCheckBox.isChecked()){
-                        symptomIds.add(Integer.toString(symptomsList.get(i).id));
-                    }
+                for (int i =0; i < checkedIds.size();i++){
+                    symptomIds.add(Integer.toString(checkedIds.get(i)));
                 }
                 Record record = new Record();
                 long now = System.currentTimeMillis();

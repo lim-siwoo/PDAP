@@ -32,6 +32,7 @@ import com.siwoosiwoo.pdap.dao.SymptomDao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 
@@ -39,7 +40,7 @@ public class NewSymptomRecord extends Fragment {
     ExpandableListView expandableListView;
     ExpandableListViewAdapter expandableListAdapter;
     List<String> expandableListTitle;
-    HashMap<String, List<String>> expandableListDetail;
+    LinkedHashMap<String, List<Symptom>> expandableListDetail;
 
     CheckBox checkBox;
     private MedicalDatabase mdb; //룸db를 선언할 데이터 베이스 선언
@@ -80,16 +81,39 @@ public class NewSymptomRecord extends Fragment {
         mdb.close();
 
         List<Symptom> symptomsList = symptomDao.getAll();//환자가 가지고있는 레코드 정보를 여기 저장함
+//        List<String> symptomsName = new ArrayList<String>();
 
-        ExpandableListDataPump test = new ExpandableListDataPump();
+//        for (int i = 0; i < symptomsList.size(); i++) {
+//            symptomsName.add(symptomsList.get(i).name);
+//            Log.d("test12", "test12" + symptomsName.get(i));
+//        }
+
+//        ExpandableListDataPump test = new ExpandableListDataPump();
 
         expandableListView = fragmentView.findViewById(R.id.expandableListView);
-        expandableListDetail = test.getData();
+//        expandableListDetail = test.getData();
+
+        expandableListDetail = new LinkedHashMap<String, List<Symptom>>();
+
+//        Log.d("test12", "testtest: " + symptomsName.subList(0, 3).get(0));
+
+        expandableListDetail.put("Cervical arterial dysfunction & Upper cervical ligamentous insufficiency", symptomsList.subList(0, 3));
+        expandableListDetail.put("Cervical Myelopathy", symptomsList.subList(3, 6));
+        expandableListDetail.put("Heart attack", symptomsList.subList(6, 9));
+        expandableListDetail.put("Pancoast Tumor", symptomsList.subList(9, 12));
+        expandableListDetail.put("MOI(Mechanism of injury)", symptomsList.subList(12, 16));
+        expandableListDetail.put("24 hours patterns", symptomsList.subList(16, 20));
+        expandableListDetail.put("Aggravating factor", symptomsList.subList(20, 24));
+        expandableListDetail.put("Easing factor", symptomsList.subList(24, 25));
+        expandableListDetail.put("Others", symptomsList.subList(25, 29));
+
+
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+
+
+        expandableListAdapter = new ExpandableListViewAdapter(getActivity(), expandableListTitle, expandableListDetail);
+
         expandableListView.setAdapter(expandableListAdapter);
-
-        expandableListAdapter = new ExpandableListViewAdapter(getActivity().getApplicationContext(), expandableListTitle, expandableListDetail);
-
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
             @Override
@@ -121,7 +145,7 @@ public class NewSymptomRecord extends Fragment {
                                 + " -> "
                                 + expandableListDetail.get(
                                 expandableListTitle.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT
+                                childPosition).name, Toast.LENGTH_SHORT
                 ).show();
                 return false;
             }
@@ -134,6 +158,10 @@ public class NewSymptomRecord extends Fragment {
 //            expandableListView.addView(checkBox);
 //        }
         return fragmentView;
+    }
+
+    public ArrayList<Integer> getCheckedIds() {
+        return expandableListAdapter.getCheckedIds();
     }
 
     class ExpandableListDataPump {
@@ -164,6 +192,12 @@ public class NewSymptomRecord extends Fragment {
             expandableListDetail.put("CRICKET TEAMS", cricket);
             expandableListDetail.put("FOOTBALL TEAMS", football);
             expandableListDetail.put("BASKETBALL TEAMS", basketball);
+
+            expandableListDetail.put("Soccer TEAMS", basketball);
+
+            expandableListDetail.put("Baseball TEAMS", basketball);
+
+            expandableListDetail.put("Ski TEAMS", basketball);
             return expandableListDetail;
         }
     }
