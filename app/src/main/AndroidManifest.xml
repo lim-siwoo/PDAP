@@ -10,18 +10,23 @@
         android:theme="@style/Theme.PDAP">
         <activity
             android:name=".AddNewRecordActivity"
+            android:screenOrientation="landscape"
             android:exported="false" />
         <activity
             android:name=".AddNewPatientActivity"
+            android:screenOrientation="landscape"
             android:exported="false" />
         <activity
             android:name=".PatientsListActivity"
+            android:screenOrientation="landscape"
             android:exported="false" />
         <activity
             android:name=".RecordActivitiy"
+            android:screenOrientation="landscape"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="landscape"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
