@@ -84,7 +84,8 @@ public class ResultExpandableListViewAdapter extends BaseExpandableListAdapter {
         TextView listTitleTextView = (TextView) view
                 .findViewById(R.id.listTitle);
         if(
-                listTitle.equals("Cervical arterial dysfunction & Upper cervical ligamentous insufficiency") ||
+                listTitle.equals("Cervical arterial dysfunction") ||
+                        listTitle.equals("Upper cervical ligamentous insufficiency") ||
                         listTitle.equals("Cervical Myelopathy") ||
                         listTitle.equals("Heart attack") ||
                         listTitle.equals("Pancoast Tumor")
