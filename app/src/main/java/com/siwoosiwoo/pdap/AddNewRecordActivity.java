@@ -44,14 +44,16 @@ public class AddNewRecordActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if (true){}
+
 
         PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
                 .allowMainThreadQueries()
                 .build();
         PatientDao patientDao = pdb.patientDao();
         Patient patient = patientDao.findPatient(Integer.parseInt(patientId));
-        patientDao.delete(patient);
+        if (patient.recordIds.isEmpty()){
+            patientDao.delete(patient);
+        }
         pdb.close();
         super.onBackPressed();
     }
