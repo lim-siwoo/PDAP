@@ -1,7 +1,6 @@
 package com.siwoosiwoo.pdap.ui.AddNewRecordFragment;
 
-import android.content.Context;
-import android.content.Intent;
+import android.graphics.PathEffect;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,15 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.siwoosiwoo.pdap.ExpandableListViewAdapter;
+import com.siwoosiwoo.pdap.SymptomExpandableListViewAdapter;
 import com.siwoosiwoo.pdap.R;
 import com.siwoosiwoo.pdap.dao.MedicalDatabase;
 import com.siwoosiwoo.pdap.dao.Patient;
@@ -38,12 +33,15 @@ import java.util.List;
 
 public class NewSymptomRecord extends Fragment {
     ExpandableListView expandableListView;
-    ExpandableListViewAdapter expandableListAdapter;
+    SymptomExpandableListViewAdapter expandableListAdapter;
     List<String> expandableListTitle;
     LinkedHashMap<String, List<Symptom>> expandableListDetail;
 
     CheckBox checkBox;
     private MedicalDatabase mdb; //룸db를 선언할 데이터 베이스 선언
+    private PatientDatabase pdb;
+    private PatientDao patientDao;
+    private RecordDao recordDao;
     private SymptomDao symptomDao;//이 자바 파일에서는 patient 정보를 사용해야 하므로 선언
     private int patientIDInt;
 
@@ -78,7 +76,6 @@ public class NewSymptomRecord extends Fragment {
                 .build();
 
         symptomDao = mdb.symptomDao();
-        mdb.close();
 
         List<Symptom> symptomsList = symptomDao.getAll();//환자가 가지고있는 레코드 정보를 여기 저장함
 //        List<String> symptomsName = new ArrayList<String>();
@@ -90,6 +87,7 @@ public class NewSymptomRecord extends Fragment {
 
 //        ExpandableListDataPump test = new ExpandableListDataPump();
 
+        mdb.close();
         expandableListView = fragmentView.findViewById(R.id.expandableListView);
 //        expandableListDetail = test.getData();
 
@@ -110,8 +108,28 @@ public class NewSymptomRecord extends Fragment {
 
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
 
+        pdb = Room.databaseBuilder(getActivity(), PatientDatabase.class, "Patient.db")  //프래그먼트에서는 getApplicationContext()를 사용하면 오류가 떠서 getActivity()를 사용해야함
+                //.createFromAsset("PDAP.db")
+                .allowMainThreadQueries()
+                .build();
 
-        expandableListAdapter = new ExpandableListViewAdapter(getActivity(), expandableListTitle, expandableListDetail);
+        patientDao = pdb.patientDao();
+        recordDao = pdb.recordDao();
+        Patient patient = patientDao.findPatient(patientIDInt);
+        Record record = null;
+        if(patient.recordIds.size() > 0) {
+            record = recordDao.findRecord(Integer.parseInt(patient.recordIds.get(0)));
+        }
+
+        ArrayList<Integer> recordIdsInt = new ArrayList<Integer>();
+
+        if(record != null) {
+            for (String id : record.symptomIds) {
+                recordIdsInt.add(Integer.parseInt(id));
+            }
+        }
+
+        expandableListAdapter = new SymptomExpandableListViewAdapter(getActivity(), expandableListTitle, expandableListDetail, recordIdsInt);
 
         expandableListView.setAdapter(expandableListAdapter);
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
