@@ -83,7 +83,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
                 String TAG = "logRecordList";
                 List<Record> logRecordList = recordDao.getAll();    //밑에 로그는 삭제해도 되는데 얘는 안됨
                 Log.d(TAG, "DB inserted record: "+logRecordList.get(0).recordDate);
-                Log.d(TAG, "DB inserted record: "+logRecordList.get(0).symptomIds.get(0));
+                //Log.d(TAG, "DB inserted record: "+logRecordList.get(0).symptomIds.get(0));
 
 
                 PatientDao patientDao = pdb.patientDao();
