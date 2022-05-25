@@ -84,7 +84,7 @@ public class RecordActivitiy extends AppCompatActivity implements List_Fragment.
 
         Intent intent = getIntent();
         patientId = intent.getStringExtra("patientId");//PatientsListActivity에서 해당하는 환자정보의 차트번호를 가져옴
-        Log.d("patientId",patientId+"2");
+        Log.d("patientId",patientId+" : 2");
 
         //fragment1 = new List_Fragment();  //fragment1이 List_Fragment이다
         fragment1 = (List_Fragment) getSupportFragmentManager().findFragmentById(R.id.fragment1);
