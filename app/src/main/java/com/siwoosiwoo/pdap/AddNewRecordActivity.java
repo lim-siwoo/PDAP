@@ -2,7 +2,6 @@ package com.siwoosiwoo.pdap;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
 import android.content.Intent;
@@ -10,8 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CheckBox;
-import android.widget.EditText;
 
 import com.siwoosiwoo.pdap.dao.MedicalDatabase;
 import com.siwoosiwoo.pdap.dao.Patient;
@@ -34,6 +31,12 @@ public class AddNewRecordActivity extends AppCompatActivity {
     String patientId;
     NewSymptomRecord fragment_new_symptom_record;
     NewMemoRecord fragment_new_memo_record;
+    private String recordInfo;
+    private int recordInt;
+    private Record trueRecord;
+    private Record record;
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.save_menu, menu);
@@ -43,9 +46,6 @@ public class AddNewRecordActivity extends AppCompatActivity {
 /*뒤로가기눌렀을때 환자 삭제해버림*/
     @Override
     public void onBackPressed() {
-
-
-
         PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
                 .allowMainThreadQueries()
                 .build();
@@ -72,7 +72,15 @@ public class AddNewRecordActivity extends AppCompatActivity {
                         .allowMainThreadQueries()
                         .build();
 
+                PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
+                        .allowMainThreadQueries()
+                        .build();
+
                 SymptomDao symptomDao = mdb.symptomDao();
+                RecordDao recordDao = pdb.recordDao();
+                PatientDao patientDao = pdb.patientDao();
+
+                Patient patient = patientDao.findPatient(Integer.parseInt(patientId));
 
                 List<Symptom> symptomsList = symptomDao.getAll();
                 mdb.close();
@@ -83,36 +91,40 @@ public class AddNewRecordActivity extends AppCompatActivity {
                 for (int i =0; i < checkedIds.size();i++){
                     symptomIds.add(Integer.toString(checkedIds.get(i)));
                 }
-                Record record = new Record();
-                long now = System.currentTimeMillis();
-                Date date = new Date(now);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                record.recordDate = sdf.format(date);
-                record.symptomIds = symptomIds;
+
+                if (patient.recordIds.isEmpty()){
+                    record = new Record();
+                    long now = System.currentTimeMillis();
+                    Date date = new Date(now);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    record.recordDate = sdf.format(date);
+                    record.symptomIds = symptomIds;
+
+                    recordDao.insertAll(record);
+
+                    String TAG = "logRecordList";
+                    List<Record> logRecordList = recordDao.getAll();    //밑에 로그는 삭제해도 되는데 얘는 안됨
+                    Log.d(TAG, "DB inserted record: "+logRecordList.get(0).recordDate);
+                    //Log.d(TAG, "DB inserted record: "+logRecordList.get(0).symptomIds.get(0));
+
+                    ArrayList<String> recordsIds = patient.recordIds;
+
+                    recordsIds.add(Integer.toString(logRecordList.get(logRecordList.size()-1).id));
+
+                    patient.recordIds = recordsIds;
+                    patientDao.updateAll(patient);
+                }else{
+                    recordInfo = patient.recordIds.get(0);//환자가 가지고있는 레코드 정보를 여기 저장함
+                    recordInt = Integer.parseInt(recordInfo);  //해당 환자의 기록들을 찾기 위해 recordID를 Int로 변환후 저장함
+
+                    record = recordDao.findRecord(recordInt);    //해당 환자의 record 기록 가져옴
+                    record.symptomIds = symptomIds;
+
+                    recordDao.updateAll(record);
+                }
 
 //                EditText memo = (EditText) fragment_new_memo_record.getView().findViewById(R.id.memo_record);
 //                record.description = memo.getText().toString();
-
-                PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
-                        .allowMainThreadQueries()
-                        .build();
-
-                RecordDao recordDao = pdb.recordDao();
-                recordDao.insertAll(record);
-                String TAG = "logRecordList";
-                List<Record> logRecordList = recordDao.getAll();    //밑에 로그는 삭제해도 되는데 얘는 안됨
-                Log.d(TAG, "DB inserted record: "+logRecordList.get(0).recordDate);
-                //Log.d(TAG, "DB inserted record: "+logRecordList.get(0).symptomIds.get(0));
-
-
-                PatientDao patientDao = pdb.patientDao();
-                Patient patient = patientDao.findPatient(Integer.parseInt(patientId));
-                ArrayList<String> recordsIds = patient.recordIds;
-
-                recordsIds.add(Integer.toString(logRecordList.get(logRecordList.size()-1).id));
-
-                patient.recordIds = recordsIds;
-                patientDao.updateAll(patient);
 
                 pdb.close();//DB닫아줌
 

@@ -15,6 +15,9 @@ public interface RecordDao {
     @Query("Update record SET description = :appendDescription")
     void appendDescription(String appendDescription);
 
+    @Update
+    void updateAll(Record... records);
+
     @Insert
     void insertAll(Record... records);
 
