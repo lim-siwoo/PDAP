@@ -40,6 +40,23 @@ public class AddNewRecordActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+/*뒤로가기눌렀을때 환자 삭제해버림*/
+    @Override
+    public void onBackPressed() {
+
+        if (true){}
+
+        PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
+                .allowMainThreadQueries()
+                .build();
+        PatientDao patientDao = pdb.patientDao();
+        Patient patient = patientDao.findPatient(Integer.parseInt(patientId));
+        patientDao.delete(patient);
+        pdb.close();
+        super.onBackPressed();
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int curId = item.getItemId();

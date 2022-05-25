@@ -1,8 +1,11 @@
 package com.siwoosiwoo.pdap.ui.AddNewRecordFragment;
 
+import android.content.Context;
 import android.graphics.PathEffect;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
@@ -52,6 +55,7 @@ public class NewSymptomRecord extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -181,6 +185,8 @@ public class NewSymptomRecord extends Fragment {
 //        }
         return fragmentView;
     }
+
+
 
     public ArrayList<Integer> getCheckedIds() {
         return expandableListAdapter.getCheckedIds();

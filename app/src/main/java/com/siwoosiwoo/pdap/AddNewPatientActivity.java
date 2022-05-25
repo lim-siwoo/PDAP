@@ -29,6 +29,7 @@ public class AddNewPatientActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private RadioGroup sexRadioGroup;
     private RadioButton maleRadio;
+    private PatientDao patientDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class AddNewPatientActivity extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
-        PatientDao patientDao = pdb.patientDao();
+        patientDao = pdb.patientDao();
 
 
         mDisplayDate.setOnClickListener(view -> {
@@ -97,11 +98,12 @@ public class AddNewPatientActivity extends AppCompatActivity {
         });
 
     }
-    
+
 
     @Override
     protected void onStop() {
         setResult(200);
+
         finish();
         super.onStop();
     }
