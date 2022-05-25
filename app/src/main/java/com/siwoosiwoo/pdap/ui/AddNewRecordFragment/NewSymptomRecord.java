@@ -132,6 +132,10 @@ public class NewSymptomRecord extends Fragment {
         expandableListAdapter = new SymptomExpandableListViewAdapter(getActivity(), expandableListTitle, expandableListDetail, recordIdsInt);
 
         expandableListView.setAdapter(expandableListAdapter);
+
+        for(int i=0; i < expandableListAdapter.getGroupCount(); i++) {
+            expandableListView.expandGroup(i);
+        }
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
             @Override

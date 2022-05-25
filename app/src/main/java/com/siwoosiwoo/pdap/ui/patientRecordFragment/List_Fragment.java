@@ -118,6 +118,11 @@ public class List_Fragment extends Fragment {
         expandableListAdapter = new ResultExpandableListViewAdapter(getActivity(), expandableListTitle, expandableListDetail);
 
         expandableListView.setAdapter(expandableListAdapter);
+
+
+        for(int i=0; i < expandableListAdapter.getGroupCount(); i++) {
+            expandableListView.expandGroup(i);
+        }
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
             @Override
