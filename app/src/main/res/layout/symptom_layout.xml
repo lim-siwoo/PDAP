@@ -11,15 +11,15 @@
         android:id="@+id/fragment1"
         android:name="com.siwoosiwoo.pdap.ui.patientRecordFragment.List_Fragment"
         android:layout_width="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="6"
         android:layout_height="match_parent"
         android:layout_margin="20px"/>
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment2"
         android:name="com.siwoosiwoo.pdap.ui.patientRecordFragment.Memo_Fragment"
         android:layout_width="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="4"
         android:layout_height="match_parent"
         android:layout_margin="20px"/>
 

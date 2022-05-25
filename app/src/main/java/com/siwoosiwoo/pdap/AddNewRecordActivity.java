@@ -46,7 +46,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
         switch (curId){
             case R.id.save:
                 fragment_new_symptom_record = (NewSymptomRecord) getSupportFragmentManager().findFragmentById(R.id.fragment1);
-                fragment_new_memo_record = (NewMemoRecord) getSupportFragmentManager().findFragmentById(R.id.fragment2);
+                //fragment_new_memo_record = (NewMemoRecord) getSupportFragmentManager().findFragmentById(R.id.fragment2);
                 //여기서 DB에 저장해야함
                 MedicalDatabase mdb = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
                         .createFromAsset("Medical.db")
@@ -71,8 +71,8 @@ public class AddNewRecordActivity extends AppCompatActivity {
                 record.recordDate = sdf.format(date);
                 record.symptomIds = symptomIds;
 
-                EditText memo = (EditText) fragment_new_memo_record.getView().findViewById(R.id.memo_record);
-                record.description = memo.getText().toString();
+//                EditText memo = (EditText) fragment_new_memo_record.getView().findViewById(R.id.memo_record);
+//                record.description = memo.getText().toString();
 
                 PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
                         .allowMainThreadQueries()
