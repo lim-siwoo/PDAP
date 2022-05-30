@@ -28,8 +28,8 @@
             android:gravity="top"
             android:lines="25"
             android:padding="10dp"
-            android:textSize="10dp"
-            android:background="@null"
+            android:textSize="18sp"
+            android:background="@drawable/memo_border"
             />
     </ScrollView>
 </LinearLayout>

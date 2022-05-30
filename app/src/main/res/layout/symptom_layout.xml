@@ -14,6 +14,11 @@
         android:layout_weight="6"
         android:layout_height="match_parent"
         android:layout_margin="20px"/>
+    <View
+        android:background="#202020"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"/>
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment2"
@@ -21,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_weight="4"
         android:layout_height="match_parent"
-        android:layout_margin="20px"/>
+        android:layout_margin="20px" />
 
 
 

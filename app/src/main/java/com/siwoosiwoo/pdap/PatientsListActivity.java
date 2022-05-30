@@ -2,9 +2,11 @@ package com.siwoosiwoo.pdap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.siwoosiwoo.pdap.dao.Patient;
 import com.siwoosiwoo.pdap.dao.PatientDao;
@@ -28,6 +31,7 @@ public class PatientsListActivity extends AppCompatActivity {
     private EditText editSearch;        // 검색어를 입력할 Input 창
     private SearchAdapter adapter;      // 리스트뷰에 연결할 아답터
     private ArrayList<String> arraylist;
+    private AlertDialog.Builder alert;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -43,6 +47,8 @@ public class PatientsListActivity extends AppCompatActivity {
                 Intent intent = new Intent(PatientsListActivity.this, AddNewPatientActivity.class);
                 startActivityForResult(intent, 101);
                 break;
+            case R.id.deletePatient:
+                alert.show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -55,11 +61,16 @@ public class PatientsListActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients_list);
+        setAlert();
+
         editSearch = findViewById(R.id.editSearch);
+
+
         // 검색을 보여줄 리스트변수
         ListView listView = findViewById(R.id.listView);
 
@@ -165,5 +176,51 @@ public class PatientsListActivity extends AppCompatActivity {
 
         arraylist.clear();
         arraylist.addAll(list);
+    }
+
+    private void setAlert(){
+        alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("환자 삭제");
+        alert.setMessage("삭제할 환자의 차트번호를 입력해주세요.");
+
+        final EditText name = new EditText(this);
+        name.setHint("ChartNumber");
+        alert.setView(name);
+
+        alert.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String deleteChartNumber = name.getText().toString();
+                //삭제
+                deletePatient(deleteChartNumber);
+                setAlert();
+            }
+        });
+        alert.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                setAlert();
+            }
+        });
+    }
+
+    private void deletePatient(String patientId) {
+        PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
+                .allowMainThreadQueries()
+                .build();
+        PatientDao patientDao = pdb.patientDao();
+        Patient patient = patientDao.findPatient(Integer.parseInt(patientId));
+        //있는지 확인을 해야함.
+        if (patient != null){
+            patientDao.delete(patient);
+            settingList();
+            adapter.notifyDataSetChanged();
+        }else{
+            Toast.makeText(getApplicationContext(),
+                    "차트번호가 잘못됬습니다.",
+                    Toast.LENGTH_SHORT).show();
+        }
+        pdb.close();
     }
 }

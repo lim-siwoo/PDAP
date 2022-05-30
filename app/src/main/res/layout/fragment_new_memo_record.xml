@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="top"
-        android:hint="선생님의 의견을 여기 적어주세요" />
+        android:textSize="18sp"
+        android:hint="선생님의 의견을 여기 적어주세요"
+        android:background="@drawable/memo_border"/>
 
 
 </FrameLayout>
