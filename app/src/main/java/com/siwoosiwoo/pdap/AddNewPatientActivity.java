@@ -51,7 +51,7 @@ public class AddNewPatientActivity extends AppCompatActivity {
         mDisplayDate.setOnClickListener(view -> {
             Calendar cal = Calendar.getInstance();
             int year = cal.get(Calendar.YEAR);
-            int month = cal.get(Calendar.MONTH);
+            int month = cal.get(Calendar.MONTH) + 1;
             int day = cal.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog dialog = new DatePickerDialog(AddNewPatientActivity.this,
@@ -63,7 +63,7 @@ public class AddNewPatientActivity extends AppCompatActivity {
         });
         mDateSetListener = (datePicker, year, month, day) -> {
 //                Log.d(TAG, "onDateSet : YYYY-MM-DD: "+year+"-"+month+"-"+day);
-            String strDate = year+"-"+month+"-"+day;
+            String strDate = year+"-"+(month + 1 )+"-"+day;
             date = strDate;
             mDisplayDate.setText(strDate);
         };
