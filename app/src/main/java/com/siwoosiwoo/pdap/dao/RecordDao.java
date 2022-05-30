@@ -12,8 +12,8 @@ public interface RecordDao {
     @Query("SELECT * FROM record WHERE id = :recordId")
     Record findRecord(int recordId);
 
-    @Query("Update record SET description = :appendDescription")
-    void appendDescription(String appendDescription);
+    @Query("Update record SET description = :appendDescription WHERE id = :recordId")
+    void appendDescription(String appendDescription, int recordId);
 
     @Update
     void updateAll(Record... records);

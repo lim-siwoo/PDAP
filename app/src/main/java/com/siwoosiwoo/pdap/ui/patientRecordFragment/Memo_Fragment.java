@@ -88,7 +88,7 @@ public class Memo_Fragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                recordDao.appendDescription(editText.getText().toString());
+                recordDao.appendDescription(editText.getText().toString(), recordInt);
             }
 
             @Override
