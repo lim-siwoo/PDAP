@@ -1,11 +1,7 @@
 package com.siwoosiwoo.pdap.ui.AddNewRecordFragment;
 
-import android.content.Context;
-import android.graphics.PathEffect;
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
@@ -95,10 +91,11 @@ public class NewSymptomRecord extends Fragment {
         expandableListView = fragmentView.findViewById(R.id.expandableListView);
 //        expandableListDetail = test.getData();
 
-        expandableListDetail = new LinkedHashMap<String, List<Symptom>>();
+        expandableListDetail = new LinkedHashMap<String, List<Symptom>>(); // expandable list view adapter에 전달해줄 해쉬맵
 
 //        Log.d("test12", "testtest: " + symptomsName.subList(0, 3).get(0));
 
+        // 체크리스트 저장하는 부분 (하드코딩임..)
         expandableListDetail.put("Cervical arterial dysfunction & Upper cervical ligamentous insufficiency", symptomsList.subList(0, 3));
         expandableListDetail.put("Cervical Myelopathy", symptomsList.subList(3, 6));
         expandableListDetail.put("Heart attack", symptomsList.subList(6, 9));
@@ -110,6 +107,7 @@ public class NewSymptomRecord extends Fragment {
         expandableListDetail.put("Others", symptomsList.subList(25, 29));
 
 
+        // exapndableListDetail에서 제목만 뽑은 리스트
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
 
         pdb = Room.databaseBuilder(getActivity(), PatientDatabase.class, "Patient.db")  //프래그먼트에서는 getApplicationContext()를 사용하면 오류가 떠서 getActivity()를 사용해야함
@@ -133,13 +131,18 @@ public class NewSymptomRecord extends Fragment {
             }
         }
 
+        // expandableListView 생성
         expandableListAdapter = new SymptomExpandableListViewAdapter(getActivity(), expandableListTitle, expandableListDetail, recordIdsInt);
-
         expandableListView.setAdapter(expandableListAdapter);
 
+
+        // expandableListView는 기본적으로 접혀있는데 이를 펴서 보여주는 부분
         for(int i=0; i < expandableListAdapter.getGroupCount(); i++) {
             expandableListView.expandGroup(i);
         }
+
+
+        // expandableListView를 접었다 폈다 할때 나오는 알림
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
             @Override
@@ -188,6 +191,7 @@ public class NewSymptomRecord extends Fragment {
 
 
 
+    // 체크리스트중 체크된 아이디들을 호출하는 함수
     public ArrayList<Integer> getCheckedIds() {
         return expandableListAdapter.getCheckedIds();
     }

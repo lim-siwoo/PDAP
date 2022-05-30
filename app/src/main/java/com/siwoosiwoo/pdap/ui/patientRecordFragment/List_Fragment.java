@@ -10,17 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.siwoosiwoo.pdap.PatientsListActivity;
 import com.siwoosiwoo.pdap.R;
-import com.siwoosiwoo.pdap.RecordActivitiy;
 import com.siwoosiwoo.pdap.ResultExpandableListViewAdapter;
-import com.siwoosiwoo.pdap.SymptomExpandableListViewAdapter;
 import com.siwoosiwoo.pdap.dao.Disease;
 import com.siwoosiwoo.pdap.dao.DiseaseDao;
 import com.siwoosiwoo.pdap.dao.MedicalDatabase;
@@ -30,11 +24,13 @@ import com.siwoosiwoo.pdap.dao.PatientDatabase;
 import com.siwoosiwoo.pdap.dao.Record;
 import com.siwoosiwoo.pdap.dao.RecordDao;
 import com.siwoosiwoo.pdap.dao.Symptom;
+import com.siwoosiwoo.pdap.dao.SymptomDao;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -106,23 +102,17 @@ public class List_Fragment extends Fragment {
 
 
 
-
+        // 의심되는 병을 출력하기 위한 expandableListView
         expandableListView = fragmentView.findViewById(R.id.expandableListView);
 
-
+        // 저장되어있는 데이터를 기반으로 의심되는 병명 연산
         expandableListDetail = getDiseaseResult(records.get(0));
 
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-
-
         expandableListAdapter = new ResultExpandableListViewAdapter(getActivity(), expandableListTitle, expandableListDetail);
-
         expandableListView.setAdapter(expandableListAdapter);
 
 
-        for(int i=0; i < expandableListAdapter.getGroupCount(); i++) {
-            expandableListView.expandGroup(i);
-        }
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
             @Override
@@ -164,13 +154,6 @@ public class List_Fragment extends Fragment {
     }
 
     public LinkedHashMap<String, List<String>> getDiseaseResult(Record record) {
-        ArrayList<Integer> trueWeight = new ArrayList<Integer>();
-        ArrayList<String> symptomsIdsString_record = record.symptomIds;//레코드의 증상들의 값을 저장
-//        int[] symptomIds = new int[symptomsIdsString_record.size()];
-//
-//        for(int i=0;i<symptomsIdsString_record.size();i++){
-//            symptomIds[i] = Integer.parseInt(symptomsIdsString_record.get(i));//symtompIds를 int값으로 변환해서 저장
-//        }
         mdb = Room.databaseBuilder(getActivity(), MedicalDatabase.class, "Medical.db")  //프래그먼트에서는 getApplicationContext()를 사용하면 오류가 떠서 getActivity()를 사용해야함
                 .allowMainThreadQueries()
                 .build();
@@ -178,46 +161,58 @@ public class List_Fragment extends Fragment {
         diseaseDao = mdb.diseaseDao();
 
         List<Disease> diseases = diseaseDao.getAll();//모든 disease의 값들을 저장하는 리스트 생성
-
         ArrayList<String> symptomsIdString_disease;//diseases에서 symtpmsIds만 저장할 변수 생성
-//        ArrayList<Integer> symptomsIdInt = new ArrayList<Integer>();//symptomsIdString에서 Integer로 변환할 변수 생성
-
-        Map<Integer, Integer> resultDesease = new HashMap<Integer, Integer>();//결과적으로 출력할 질병 해쉬맵 생성
+        ArrayList<String> symptomsIdsString_record = record.symptomIds;//레코드의 증상들의 값을 저장
+        Map<Integer, Integer> resultDisease = new HashMap<Integer, Integer>();//결과적으로 출력할 질병 해쉬맵 생성
+        Map<Integer, String> resultDiseaseDetail = new HashMap<>(); // 체크된 증상을 담기휘한 해쉬맵
         //왼쪽 인트는 해당하는 질병저장 오른쪽은 우선순위 저장
         int count = 0;//몇개나 겹치는게 있는지 카운트
 
 
         for (int i = 0; i < diseases.size(); i++) {
             symptomsIdString_disease = diseases.get(i).symptomIds;//현재 disease가 가지고 있는 증상들의 값을 저장
-//            for(int j=0;j<symptomsIdString.size();j++){
-//                symptomsIdInt.add(Integer.parseInt(symptomsIdString.get(j)));//int로 변환
-//            }
+            String checkedSymptomIds = ""; // 체크된 증상을 담기위한 변수
             for (int j = 0; j < symptomsIdsString_record.size(); j++) {//disease가 가지고 있는 증상들의 값만큼
                 for (int k = 0; k < symptomsIdString_disease.size(); k++) {//
                     if(symptomsIdsString_record.get(j).equals(symptomsIdString_disease.get(k))) {
+                        checkedSymptomIds = checkedSymptomIds + symptomsIdsString_record.get(j) + ","; // 문자열 형태로 리스트를 저장하기위해 구분을 위한 쉼표 추가
                         count++;
                     }
                 }
             }
             if (count > 0) {
-                resultDesease.put(i+1, count);
+                // 연산한 데이터들 저장
+                resultDisease.put(i+1, count);
+                resultDiseaseDetail.put(i+1, checkedSymptomIds);
             }
             count=0;
         }
 
-        for(int key : resultDesease.keySet()){
-//            trueSymptom.add(key);
-            trueWeight.add(resultDesease.get(key));
-        }
-        Collections.sort(trueWeight, Collections.reverseOrder());
+        // 정렬을 위해 hashmap에 저장되어 있는 병 목록을 linked list로 이전
+        List<Map.Entry<Integer, Integer>> sortedResultDisease = new LinkedList<>(resultDisease.entrySet());
+        sortedResultDisease.sort(new Comparator<Map.Entry<Integer, Integer>>() { // 정렬 함수
+            @Override
+            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                return o2.getValue() - o1.getValue();
+            }
+        });
 
+        SymptomDao symptomDao = mdb.symptomDao();
+        LinkedHashMap<String, List<String>> resultDetail = new LinkedHashMap<String, List<String>>(); // expandableListView로 반환될 정보를 담는 링크드해쉬맵
+        for (Map.Entry<Integer, Integer> result : sortedResultDisease) { // 내림차순으로 정렬된 리스트를 기반으로 resultDetail에 데이터 저장을 해주는 부분
+            Disease disease = diseaseDao.findDisease(result.getKey());
+            String diseaseDescription = disease.description + "\n\n가중치 : " + result.getValue() + "\n";
 
+            // 저장되어있는 체크된 증상 리스트가 문자열이기 때문에 쉼표를 기준으로 분리
+            String[] checkedSymptomIdList = resultDiseaseDetail.get(result.getKey()).split(",");
+            for(String id : checkedSymptomIdList) {
+                Symptom symptom = symptomDao.findSymptom(Integer.parseInt(id));
+                diseaseDescription = diseaseDescription + symptom.name + "\n";
+            }
 
-        LinkedHashMap<String, List<String>> resultDetail = new LinkedHashMap<String, List<String>>();
-        for (int key : resultDesease.keySet()) {
-            Disease disease = diseaseDao.findDisease(key);
+            // result detail에 저장될 데이터 저장
             List<String> description = new ArrayList<String>();
-            description.add(disease.description);
+            description.add(diseaseDescription);
             resultDetail.put(disease.name, description);
 
         }

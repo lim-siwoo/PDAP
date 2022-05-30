@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.siwoosiwoo.pdap.dao.Symptom;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -134,6 +135,7 @@ public class SymptomExpandableListViewAdapter extends BaseExpandableListAdapter 
     }
 
     public ArrayList<Integer> getCheckedIds() {
+        checkedIds.sort(Comparator.naturalOrder());
         return checkedIds;
     }
 }

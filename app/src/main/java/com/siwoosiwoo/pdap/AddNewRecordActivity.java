@@ -85,6 +85,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
                 List<Symptom> symptomsList = symptomDao.getAll();
                 mdb.close();
 
+                // 체크된 체크리스트 호출
                 ArrayList<Integer> checkedIds = fragment_new_symptom_record.getCheckedIds();
                 ArrayList<String> symptomIds = new ArrayList<>();
 
@@ -92,6 +93,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
                     symptomIds.add(Integer.toString(checkedIds.get(i)));
                 }
 
+                // 저장된 레코드가 없을때
                 if (patient.recordIds.isEmpty()){
                     record = new Record();
                     long now = System.currentTimeMillis();
@@ -113,7 +115,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
 
                     patient.recordIds = recordsIds;
                     patientDao.updateAll(patient);
-                }else{
+                }else{ // 저장된 레코드가 있을때
                     recordInfo = patient.recordIds.get(0);//환자가 가지고있는 레코드 정보를 여기 저장함
                     recordInt = Integer.parseInt(recordInfo);  //해당 환자의 기록들을 찾기 위해 recordID를 Int로 변환후 저장함
 

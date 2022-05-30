@@ -12,6 +12,9 @@ public interface SymptomDao {
     @Query("SELECT * FROM symptom WHERE id IN (:symptomIds)")
     List<Symptom> loadAllByIds(int[] symptomIds);
 
+    @Query("SELECT * FROM symptom WHERE id = :symptomId")
+    Symptom findSymptom(int symptomId);
+
     @Insert
     void insert(Symptom symptom);
 
