@@ -103,10 +103,10 @@ public class SymptomExpandableListViewAdapter extends BaseExpandableListAdapter 
     @Override
     public View getChildView(int listPosition, final int expandableListPosition, boolean isLastChild, View view, ViewGroup viewGroup) {
         final Symptom expandedListSymptom = (Symptom) getChild(listPosition, expandableListPosition);
-        if(view == null) {
+//        if(view == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.list_symptom, null);
-        }
+//        }
 
         CheckBox expandedListCheckBox = (CheckBox) view.findViewById(R.id.expandedListItem);
         expandedListCheckBox.setChecked(false);

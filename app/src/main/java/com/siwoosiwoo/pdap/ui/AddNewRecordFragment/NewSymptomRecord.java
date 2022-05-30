@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import com.siwoosiwoo.pdap.SymptomExpandableListViewAdapter;
 import com.siwoosiwoo.pdap.R;
@@ -142,50 +141,7 @@ public class NewSymptomRecord extends Fragment {
         }
 
 
-        // expandableListView를 접었다 폈다 할때 나오는 알림
-        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getActivity(),
-                        expandableListTitle.get(groupPosition) + " List Expanded.",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getActivity(),
-                        expandableListTitle.get(groupPosition) + " List Collapsed.",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                Toast.makeText(
-                        getActivity(),
-                        expandableListTitle.get(groupPosition)
-                                + " -> "
-                                + expandableListDetail.get(
-                                expandableListTitle.get(groupPosition)).get(
-                                childPosition).name, Toast.LENGTH_SHORT
-                ).show();
-                return false;
-            }
-        });
-
-//        for (int i =0; i<symptomsList.size();i++){
-//            checkBox = new CheckBox(getActivity());
-//            checkBox.setId(symptomsList.get(i).id);
-//            checkBox.setText(symptomsList.get(i).name);
-//            expandableListView.addView(checkBox);
-//        }
         return fragmentView;
     }
 
