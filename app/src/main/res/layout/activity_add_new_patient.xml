@@ -18,8 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@color/bady_blue"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/newPatientText"

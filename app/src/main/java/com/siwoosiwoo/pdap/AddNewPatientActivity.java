@@ -93,18 +93,10 @@ public class AddNewPatientActivity extends AppCompatActivity {
             pdb.close();
             Intent intent2 = new Intent(AddNewPatientActivity.this, AddNewRecordActivity.class);
             intent2.putExtra("patientId",Integer.toString(newPatient.id));
-            setResult(200);
             startActivity(intent2);
+            finish();
         });
 
     }
 
-
-    @Override
-    protected void onStop() {
-        setResult(200);
-
-        finish();
-        super.onStop();
-    }
 }

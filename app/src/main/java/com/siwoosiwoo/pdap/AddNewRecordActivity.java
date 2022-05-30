@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.siwoosiwoo.pdap.dao.MedicalDatabase;
 import com.siwoosiwoo.pdap.dao.Patient;
@@ -33,7 +34,6 @@ public class AddNewRecordActivity extends AppCompatActivity {
     NewMemoRecord fragment_new_memo_record;
     private String recordInfo;
     private int recordInt;
-    private Record trueRecord;
     private Record record;
 
 
@@ -51,11 +51,18 @@ public class AddNewRecordActivity extends AppCompatActivity {
                 .build();
         PatientDao patientDao = pdb.patientDao();
         Patient patient = patientDao.findPatient(Integer.parseInt(patientId));
-        if (patient.recordIds.isEmpty()){
+        if (patient.recordIds.isEmpty()){ // 환자 레코드가 있을떄랑 없을떄로 구분
             patientDao.delete(patient);
+            pdb.close();
+            super.onBackPressed();
+        } else { // 레코드가 있으면 삭제하지 않고 환자 레코드 엑티비티로 전환
+            Intent intent2 = new Intent(AddNewRecordActivity.this, RecordActivitiy.class);
+
+            intent2.putExtra("patientId", patientId);
+
+            startActivity(intent2);
+            finish();
         }
-        pdb.close();
-        super.onBackPressed();
     }
 
 
@@ -67,23 +74,16 @@ public class AddNewRecordActivity extends AppCompatActivity {
                 fragment_new_symptom_record = (NewSymptomRecord) getSupportFragmentManager().findFragmentById(R.id.fragment1);
                 //fragment_new_memo_record = (NewMemoRecord) getSupportFragmentManager().findFragmentById(R.id.fragment2);
                 //여기서 DB에 저장해야함
-                MedicalDatabase mdb = Room.databaseBuilder(getApplicationContext(), MedicalDatabase.class, "Medical.db")
-                        .createFromAsset("Medical.db")
-                        .allowMainThreadQueries()
-                        .build();
 
                 PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
                         .allowMainThreadQueries()
                         .build();
 
-                SymptomDao symptomDao = mdb.symptomDao();
                 RecordDao recordDao = pdb.recordDao();
                 PatientDao patientDao = pdb.patientDao();
 
                 Patient patient = patientDao.findPatient(Integer.parseInt(patientId));
 
-                List<Symptom> symptomsList = symptomDao.getAll();
-                mdb.close();
 
                 // 체크된 체크리스트 호출
                 ArrayList<Integer> checkedIds = fragment_new_symptom_record.getCheckedIds();
@@ -102,6 +102,9 @@ public class AddNewRecordActivity extends AppCompatActivity {
                     record.recordDate = sdf.format(date);
                     record.symptomIds = symptomIds;
 
+                    EditText memo = (EditText) fragment_new_memo_record.getView().findViewById(R.id.memo_record);
+                    record.description = memo.getText().toString();
+
                     recordDao.insertAll(record);
 
                     String TAG = "logRecordList";
@@ -112,6 +115,9 @@ public class AddNewRecordActivity extends AppCompatActivity {
                     ArrayList<String> recordsIds = patient.recordIds;
 
                     recordsIds.add(Integer.toString(logRecordList.get(logRecordList.size()-1).id));
+
+
+
 
                     patient.recordIds = recordsIds;
                     patientDao.updateAll(patient);
@@ -125,8 +131,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
                     recordDao.updateAll(record);
                 }
 
-//                EditText memo = (EditText) fragment_new_memo_record.getView().findViewById(R.id.memo_record);
-//                record.description = memo.getText().toString();
+
 
                 pdb.close();//DB닫아줌
 
@@ -149,11 +154,12 @@ public class AddNewRecordActivity extends AppCompatActivity {
         Log.d("patientId",patientId+"2");
 
         fragment_new_symptom_record = (NewSymptomRecord) getSupportFragmentManager().findFragmentById(R.id.fragment1);
+        fragment_new_memo_record = (NewMemoRecord) getSupportFragmentManager().findFragmentById(R.id.fragment2);
 
         Bundle bundle = new Bundle();
         bundle.putString("patientId", patientId);
 
         fragment_new_symptom_record.setArguments(bundle);
-//        fragment_new_memo_record.setArguments(bundle);
+        fragment_new_memo_record.setArguments(bundle);
     }
 }

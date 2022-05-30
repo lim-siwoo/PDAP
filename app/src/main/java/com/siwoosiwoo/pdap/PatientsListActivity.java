@@ -45,12 +45,20 @@ public class PatientsListActivity extends AppCompatActivity {
         switch (curId){
             case R.id.addPatient:
                 Intent intent = new Intent(PatientsListActivity.this, AddNewPatientActivity.class);
-                startActivityForResult(intent, 101);
+                startActivity(intent);
                 break;
             case R.id.deletePatient:
                 alert.show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        settingList();
+        adapter.notifyDataSetChanged();
     }
 
     @Override

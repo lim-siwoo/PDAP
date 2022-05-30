@@ -9,9 +9,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PDAP">
         <activity
-            android:name=".EditRecordActivity"
-            android:exported="false" />
-        <activity
             android:name=".AddNewRecordActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
