@@ -129,7 +129,7 @@ public class RecordActivitiy extends AppCompatActivity{ //{
         fragment1.setArguments(bundle);
 
         bundle = new Bundle();
-        bundle.putString("patientId_Memo", patientId);//해당하는 환자정보의 차트번호를 리스트에 띄울 List_Fragment
+        bundle.putString("patientId", patientId);//해당하는 환자정보의 차트번호를 리스트에 띄울 List_Fragment
         if(bundle != null){
             Log.d("patientId","번들에 값 있다.");
         }else{

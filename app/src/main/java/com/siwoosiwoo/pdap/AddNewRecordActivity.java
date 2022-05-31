@@ -21,6 +21,7 @@ import com.siwoosiwoo.pdap.dao.Symptom;
 import com.siwoosiwoo.pdap.dao.SymptomDao;
 import com.siwoosiwoo.pdap.ui.AddNewRecordFragment.NewMemoRecord;
 import com.siwoosiwoo.pdap.ui.AddNewRecordFragment.NewSymptomRecord;
+import com.siwoosiwoo.pdap.ui.patientRecordFragment.Memo_Fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
 
     String patientId;
     NewSymptomRecord fragment_new_symptom_record;
-    NewMemoRecord fragment_new_memo_record;
+    Memo_Fragment fragment_new_memo_record;
     private String recordInfo;
     private int recordInt;
     private Record record;
@@ -154,7 +155,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
         Log.d("patientId",patientId+"2");
 
         fragment_new_symptom_record = (NewSymptomRecord) getSupportFragmentManager().findFragmentById(R.id.fragment1);
-        fragment_new_memo_record = (NewMemoRecord) getSupportFragmentManager().findFragmentById(R.id.fragment2);
+        fragment_new_memo_record = (Memo_Fragment) getSupportFragmentManager().findFragmentById(R.id.fragment2);
 
         Bundle bundle = new Bundle();
         bundle.putString("patientId", patientId);

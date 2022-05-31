@@ -6,30 +6,17 @@
     android:orientation="vertical"
     tools:context=".ui.patientRecordFragment.Memo_Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="20dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        android:background="#3552E5"-->
-<!--        android:text="Second Fragment" />-->
-    <ScrollView
-        android:id="@+id/scrollView"
+
+    <EditText
+        android:id="@+id/memo_edit"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <EditText
-            android:id="@+id/memo_edit"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:gravity="top"
-            android:lines="25"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:background="@drawable/memo_border"
-            />
-    </ScrollView>
+        android:layout_height="match_parent"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:lines="25"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:background="@drawable/memo_border"
+        />
 </LinearLayout>
