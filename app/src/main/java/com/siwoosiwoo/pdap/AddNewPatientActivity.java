@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
@@ -29,6 +31,7 @@ public class AddNewPatientActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private RadioGroup sexRadioGroup;
     private RadioButton maleRadio;
+    private RadioButton femaleRadio;
     private PatientDao patientDao;
 
     @Override
@@ -41,6 +44,8 @@ public class AddNewPatientActivity extends AppCompatActivity {
         Button confirmButton = findViewById(R.id.OKbutton);
         sexRadioGroup = findViewById(R.id.SexRadioGroup);
         maleRadio = findViewById(R.id.maleRadio);
+        femaleRadio = findViewById(R.id.femaleRadio);
+
         PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
                 .allowMainThreadQueries()
                 .build();
@@ -75,26 +80,40 @@ public class AddNewPatientActivity extends AppCompatActivity {
             //여기서 환자정보를 DB에 저장하면됨
             Patient newPatient = new Patient();
 
-            newPatient.id = Integer.parseInt(editChartNumber.getText().toString());
+            if(editChartNumber.getText().toString().isEmpty()) {
+                newPatient.id = -1;
+            } else {
+                newPatient.id = Integer.parseInt(editChartNumber.getText().toString());
+            }
             newPatient.name = editPersonName.getText().toString();
             newPatient.birthDate = date;
-
             int selectedId = sexRadioGroup.getCheckedRadioButtonId();
             if(maleRadio.getId() == selectedId) {
                 newPatient.sex = "M";
-            } else {
+            } else if(femaleRadio.getId() == selectedId) {
                 newPatient.sex = "F";
+            } else {
+                newPatient.sex = "N";
             }
 
             newPatient.recordIds=new ArrayList<>();
-            patientDao.insertAll(newPatient);
 
-
+            if(patientDao.findPatient(newPatient.id) != null) {
+                Toast.makeText(getApplicationContext(),
+                        "이미 중복된 차트번호가 있습니다.",
+                        Toast.LENGTH_SHORT).show();
+            } else if(newPatient.id == -1 || newPatient.name.isEmpty() || newPatient.sex.equals("N")) {
+                Toast.makeText(getApplicationContext(),
+                        "환자 정보를 모두 입력해주세요.",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                patientDao.insertAll(newPatient);
+                Intent intent2 = new Intent(AddNewPatientActivity.this, AddNewRecordActivity.class);
+                intent2.putExtra("patientId",Integer.toString(newPatient.id));
+                startActivity(intent2);
+                finish();
+            }
             pdb.close();
-            Intent intent2 = new Intent(AddNewPatientActivity.this, AddNewRecordActivity.class);
-            intent2.putExtra("patientId",Integer.toString(newPatient.id));
-            startActivity(intent2);
-            finish();
         });
 
     }
