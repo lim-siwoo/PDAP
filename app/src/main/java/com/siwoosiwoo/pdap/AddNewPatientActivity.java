@@ -96,7 +96,7 @@ public class AddNewPatientActivity extends AppCompatActivity {
                 newPatient.sex = "N";
             }
 
-            newPatient.recordIds=new ArrayList<>();
+            newPatient.recordIds = new ArrayList<String>();
 
             if(patientDao.findPatient(newPatient.id) != null) {
                 Toast.makeText(getApplicationContext(),
@@ -108,8 +108,9 @@ public class AddNewPatientActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             } else {
                 patientDao.insertAll(newPatient);
+                pdb.close();
                 Intent intent2 = new Intent(AddNewPatientActivity.this, AddNewRecordActivity.class);
-                intent2.putExtra("patientId",Integer.toString(newPatient.id));
+                intent2.putExtra("patientId", Integer.toString(newPatient.id));
                 startActivity(intent2);
                 finish();
             }

@@ -62,15 +62,15 @@ public class MainActivity extends AppCompatActivity {
 
         List<Symptom> getTest = symptomDao.getAll();
 
-        for(int i = 0; i < getTest.size(); i++) {
-            Log.d("test12", getTest.get(i).name);
-        }
+//        for(int i = 0; i < getTest.size(); i++) {
+//            Log.d("test12", getTest.get(i).name);
+//        }
 
 
         DiseaseDao diseaseDao = mdb.diseaseDao();
 
         List<Disease> getTest2 = diseaseDao.getAll();
-        Log.d("test12", getTest2.get(0).name);
+//        Log.d("test12", getTest2.get(0).name);
 
         mdb.close();
 

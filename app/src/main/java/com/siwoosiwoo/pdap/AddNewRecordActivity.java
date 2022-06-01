@@ -11,22 +11,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-import com.siwoosiwoo.pdap.dao.MedicalDatabase;
 import com.siwoosiwoo.pdap.dao.Patient;
 import com.siwoosiwoo.pdap.dao.PatientDao;
 import com.siwoosiwoo.pdap.dao.PatientDatabase;
 import com.siwoosiwoo.pdap.dao.Record;
 import com.siwoosiwoo.pdap.dao.RecordDao;
-import com.siwoosiwoo.pdap.dao.Symptom;
-import com.siwoosiwoo.pdap.dao.SymptomDao;
-import com.siwoosiwoo.pdap.ui.AddNewRecordFragment.NewMemoRecord;
 import com.siwoosiwoo.pdap.ui.AddNewRecordFragment.NewSymptomRecord;
 import com.siwoosiwoo.pdap.ui.patientRecordFragment.Memo_Fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class AddNewRecordActivity extends AppCompatActivity {
 
@@ -72,8 +67,6 @@ public class AddNewRecordActivity extends AppCompatActivity {
         int curId = item.getItemId();
         switch (curId){
             case R.id.save:
-                fragment_new_symptom_record = (NewSymptomRecord) getSupportFragmentManager().findFragmentById(R.id.fragment1);
-                //fragment_new_memo_record = (NewMemoRecord) getSupportFragmentManager().findFragmentById(R.id.fragment2);
                 //여기서 DB에 저장해야함
 
                 PatientDatabase pdb = Room.databaseBuilder(getApplicationContext(), PatientDatabase.class, "Patient.db")
@@ -93,7 +86,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
                 for (int i =0; i < checkedIds.size();i++){
                     symptomIds.add(Integer.toString(checkedIds.get(i)));
                 }
-
+                Log.d("test12", "patien.recordIds.size() : " + patient.recordIds.size());
                 // 저장된 레코드가 없을때
                 if (patient.recordIds.isEmpty()){
                     record = new Record();
@@ -103,23 +96,15 @@ public class AddNewRecordActivity extends AppCompatActivity {
                     record.recordDate = sdf.format(date);
                     record.symptomIds = symptomIds;
 
-                    EditText memo = (EditText) fragment_new_memo_record.getView().findViewById(R.id.memo_record);
+                    EditText memo = (EditText) fragment_new_memo_record.getView().findViewById(R.id.memo_edit);
+
                     record.description = memo.getText().toString();
+                    Long logRecord = recordDao.insert(record);
+                    Log.d("test12", "new record inserted");
 
-                    recordDao.insertAll(record);
-
-                    String TAG = "logRecordList";
-                    List<Record> logRecordList = recordDao.getAll();    //밑에 로그는 삭제해도 되는데 얘는 안됨
-                    Log.d(TAG, "DB inserted record: "+logRecordList.get(0).recordDate);
-                    //Log.d(TAG, "DB inserted record: "+logRecordList.get(0).symptomIds.get(0));
-
-                    ArrayList<String> recordsIds = patient.recordIds;
-
-                    recordsIds.add(Integer.toString(logRecordList.get(logRecordList.size()-1).id));
-
-
-
-
+                    ArrayList<String> recordsIds = new ArrayList<String>();
+                    recordsIds.add(String.valueOf(logRecord));
+                    Log.d("test12", recordsIds.get(0));
                     patient.recordIds = recordsIds;
                     patientDao.updateAll(patient);
                 }else{ // 저장된 레코드가 있을때

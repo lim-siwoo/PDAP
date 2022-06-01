@@ -13,13 +13,16 @@ public interface RecordDao {
     Record findRecord(int recordId);
 
     @Query("Update record SET description = :appendDescription WHERE id = :recordId")
-    void appendDescription(String appendDescription, int recordId);
+    void updateDescription(String appendDescription, int recordId);
 
     @Update
     void updateAll(Record... records);
 
     @Insert
-    void insertAll(Record... records);
+    List<Long> insertAll(Record... records);
+
+    @Insert
+    Long insert(Record record);
 
     @Delete
     void delete(Record record);

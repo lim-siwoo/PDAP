@@ -85,8 +85,7 @@ public class Memo_Fragment extends Fragment {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                    recordDao.appendDescription(editText.getText().toString(), recordInt);
+                    recordDao.updateDescription(editText.getText().toString(), recordInt);
                 }
 
                 @Override
@@ -105,9 +104,5 @@ public class Memo_Fragment extends Fragment {
         }else{
             Log.d("Id","textView가 널인데요??");
         }
-    }
-
-    public void appendText(String s){
-        editText.append(s);
     }
 }
